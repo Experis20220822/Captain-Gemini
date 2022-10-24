@@ -1,0 +1,17 @@
+@*
+ * Copyright 2022 HM Revenue & Customs
+ *
+ *@
+
+@this(govukButton: GovukButton, govukInput: GovukInput, govukBackLink: GovukBackLink)
+
+@govukBackLink(BackLink(href = routes.HomeController.index().url))
+
+@govukInput(
+    Input(id = "fieldId", name = "fieldName", value = Some("Text"))
+            .withHint(Hint(id = Some("hintId"), content = HtmlContent(Html("This is a hint."))))
+)
+
+@govukButton(
+    ButtonViewModel(content = HtmlContent("Continue")).asLink("")
+)

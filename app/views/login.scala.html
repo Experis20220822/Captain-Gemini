@@ -1,0 +1,19 @@
+@*
+ * Copyright 2022 HM Revenue & Customs
+ *
+ *@
+
+@import uk.gov.hmrc.govukfrontend.views.html.components._
+@import uk.gov.hmrc.govukfrontend.views.html.components.implicits._
+@import uk.gov.hmrc.govukfrontend.views.Implicits._
+@import views.html.SelectLogin
+
+@this(layout: Layout, selectPage: SelectLogin)
+
+@(pageTitle: String, heading: String, message: String)(implicit request: Request[_], messages: Messages)
+
+@import uk.gov.hmrc.play._
+
+@layout(pageTitle = pageTitle, isWelshTranslationAvailable = true) {
+@selectPage()
+}

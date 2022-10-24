@@ -1,0 +1,23 @@
+@*
+ * Copyright 2022 HM Revenue & Customs
+ *
+ *@
+
+@import views.html.helper.CSPNonce
+@import uk.gov.hmrc.hmrcfrontend.views.html.helpers.HmrcLayout
+@import views.html.helper.CSPNonce
+@import config.AppConfig
+
+@this(hmrcLayout: HmrcLayout)
+
+@(
+        pageTitle: String,
+        isWelshTranslationAvailable: Boolean)(
+        contentBlock: Html)(implicit request: Request[_], messages: Messages)
+
+    @hmrcLayout(
+        pageTitle = Some(pageTitle),
+        displayHmrcBanner = true,
+        nonce = CSPNonce.get,
+        isWelshTranslationAvailable = isWelshTranslationAvailable,
+    )(contentBlock)
