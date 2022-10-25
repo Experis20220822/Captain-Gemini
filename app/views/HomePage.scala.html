@@ -7,8 +7,32 @@
 
 @this(govukSelect: GovukSelect, govukButton: GovukButton, govukFieldset: GovukFieldset, govukInput: GovukInput)
 
+<style>
+.sup-nav {
+display: flex;
+justify-content: space-between;
+    padding: 1rem 2rem;
+    background: #cfd8dc;
+}
+.sup-nav ul li a:hover{
+    color: #fff;
+    cursor: crosshair;
+}
+
+</style>
+
 <div class="govuk-width-container">
-    <a href="https://www.gov.uk" class="govuk-back-link">Back</a>
+
+    <nav class="hmrc-language-select sup-nav">
+        <ul class="hmrc-language-select__list">
+            <li class="hmrc-language-select__list-item">
+                <a href="">View Superheroes</a>
+            </li>
+            <li class="hmrc-language-select__list-item" href="/login">
+                <a href="/login">Create Superheroes</a>
+            </li>
+        </ul>
+    </nav>
 
     <main class="govuk-main-wrapper">
 
