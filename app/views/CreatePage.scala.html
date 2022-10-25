@@ -1,0 +1,116 @@
+@*
+ * Copyright 2022 HM Revenue & Customs
+ *
+ *@
+
+@import uk.gov.hmrc.govukfrontend.views.Aliases.Button
+
+@this(govukSelect: GovukSelect, govukButton: GovukButton, govukFieldset: GovukFieldset, govukInput: GovukInput)
+
+<style>
+.sup-nav {
+display: flex;
+justify-content: space-between;
+    padding: 1rem 2rem;
+    background: #cfd8dc;
+}
+.sup-nav ul li a:hover{
+    color: #fff;
+    cursor: crosshair;
+}
+
+</style>
+
+<div class="govuk-width-container">
+
+  <nav class="hmrc-language-select sup-nav">
+    <ul class="hmrc-language-select__list">
+      <li class="hmrc-language-select__list-item">
+        <a href="/">Home</a>
+      </li>
+      <li class="hmrc-language-select__list-item" href="/login">
+        <a href="">View Superheroes</a>
+      </li>
+    </ul>
+  </nav>
+
+  <main class="govuk-main-wrapper">
+
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        <h1 class="govuk-heading-xl">Create a Superhero</h1>
+        <div class="govuk-inset-text">
+          “Everything you can imagine is real.”
+          <br>
+          <br>
+          Now go and create a Superhero and get ready to battle!
+        </div>
+      </div>
+    </div>
+
+    <div class="govuk-form-group">
+      <h1 class="govuk-label-wrapper"><label class="govuk-label govuk-label--l" for="event-name">
+        Superhero name
+      </label>
+      </h1>
+      <input class="govuk-input" id="event-name" name="event-name" type="text">
+    </div>
+
+    <div class="govuk-form-group">
+      <h1 class="govuk-label-wrapper"><label class="govuk-label govuk-label--l" for="event-name">
+        Slogan
+      </label>
+      </h1>
+      <input class="govuk-input" id="event-name" name="event-name" type="text">
+    </div>
+
+    <div class="govuk-form-group">
+      <h1 class="govuk-label-wrapper"><label class="govuk-label govuk-label--l" for="event-name">
+        Attribute 1 (Strength)
+      </label>
+      </h1>
+      <input class="govuk-input" id="event-name" name="event-name" type="text">
+    </div>
+
+    <div class="govuk-form-group">
+      <h1 class="govuk-label-wrapper"><label class="govuk-label govuk-label--l" for="event-name">
+        Attribute 2 (Intellect)
+      </label>
+      </h1>
+      <input class="govuk-input" id="event-name" name="event-name" type="text">
+    </div>
+
+    <div class="govuk-form-group">
+      <h1 class="govuk-label-wrapper"><label class="govuk-label govuk-label--l" for="event-name">
+        Attribute 3 (Speed)
+      </label>
+      </h1>
+      <input class="govuk-input" id="event-name" name="event-name" type="text">
+    </div>
+
+    <div class="govuk-form-group">
+      <h1 class="govuk-label-wrapper"><label class="govuk-label govuk-label--l" for="event-name">
+        Attribute 4 (Charisma)
+      </label>
+      </h1>
+      <input class="govuk-input" id="event-name" name="event-name" type="text">
+    </div>
+
+    <div class="govuk-form-group">
+      <h1 class="govuk-label-wrapper"><label class="govuk-label govuk-label--l" for="event-name">
+        Image URL
+      </label>
+      </h1>
+      <input class="govuk-input" id="event-name" name="event-name" type="text">
+    </div>
+
+    <a href="#" role="button" draggable="false" class="govuk-button govuk-button--start" data-module="govuk-button">
+      Make it real!
+      <svg class="govuk-button__start-icon" xmlns="http://www.w3.org/2000/svg" width="17.5" height="19" viewBox="0 0 33 40" aria-hidden="true" focusable="false">
+        <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z" />
+      </svg></a>
+
+  </main>
+</div>
+
+
