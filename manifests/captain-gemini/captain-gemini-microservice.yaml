@@ -1,0 +1,87 @@
+kind: Service
+apiVersion: v1
+metadata:
+  labels:
+    app: heatwave-service
+    stack: frontend
+  name: heatwave-service
+  namespace: default
+spec:
+  selector:
+    source: demo
+    app: heatwave
+  ports:
+    -   name: web
+        protocol: TCP
+        port: 30201
+        targetPort: 9000
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  labels:
+    stack: frontend
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /heatwave$1$2
+  name: heatwave-ingress-path
+  namespace: default
+spec:
+  rules:
+    - http:
+        paths:
+          -   path: /heatwave(/|$)(.*)
+              pathType: Prefix
+              backend:
+                service:
+                  name: heatwave-service
+                  port:
+                    number: 30201
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  labels:
+    app: heatwave
+    stack: frontend
+    source: demo
+  name: heatwave
+  namespace: default
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      run: heatwave
+  template:
+    metadata:
+      labels:
+        app: heatwave
+        run: heatwave
+        source: demo
+      namespace: default
+    spec:
+      containers:
+        -   image: 219099013464.dkr.ecr.us-west-2.amazonaws.com/heatwave
+            name: heatwave
+            ports:
+              -   name: web
+                  containerPort: 9000
+            env:
+              -   name: MONGO_HOST
+                  valueFrom:
+                    configMapKeyRef:
+                      name: heatwave-configmap
+                      key: mongo_host
+              -   name: MONGO_PORT
+                  valueFrom:
+                    configMapKeyRef:
+                      name: heatwave-configmap
+                      key: mongo_port
+              -   name: MONGO_USERNAME
+                  value: root
+              -   name: MONGO_PASSWORD
+                  valueFrom:
+                    secretKeyRef:
+                      name: mongodb
+                      key: mongodb-root-password
+              -   name: DATABASE_NAME
+                  value: heatwave
