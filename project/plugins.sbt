@@ -29,3 +29,5 @@ addSbtPlugin("com.typesafe.sbt" % "sbt-uglify" % "2.0.0")
 addSbtPlugin("com.typesafe.sbt" % "sbt-digest" % "1.1.4")
 
 addSbtPlugin("org.scalameta" % "sbt-scalafmt" % "2.4.6")
+
+addSbtPlugin("com.github.sbt" % "sbt-native-packager" % "1.9.9")
