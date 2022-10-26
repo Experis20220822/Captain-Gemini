@@ -7,6 +7,7 @@
 GET     /                           controllers.HomeController.index()
 GET     /create                     controllers.CreateController.index()
 GET     /viewsuperheros             controllers.ViewSuperherosController.index()
+GET     /battle                     controllers.BattleController.index()
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
