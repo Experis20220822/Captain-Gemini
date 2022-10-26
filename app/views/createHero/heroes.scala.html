@@ -1,0 +1,36 @@
+@*
+ * Copyright 2022 HM Revenue & Customs
+ *
+ *@
+
+@(heroes: List[Hero])
+
+@*
+@main("Heroes"){
+    @if(stadiums.size == 1) {
+        <h1>Welcome, there is @stadiums.size stadium to look at!</h1>
+    } else {
+        <h1>Welcome, there are @stadiums.size stadiums to look at!</h1>
+    }
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">City</th>
+                <th scope="col">Country</th>
+                <th scope="col">Seats</th>
+            </tr>
+        </thead>
+        <tbody>
+        @for(stadium <-stadiums) {
+            <tr>
+                <td>@stadium.name</td>
+                <td>@stadium.city</td>
+                <td>@stadium.country</td>
+                <td>@stadium.seats</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}*@
