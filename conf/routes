@@ -5,7 +5,7 @@
 ->         /hmrc-frontend                      hmrcfrontend.Routes
 # An example controller showing a sample home page
 GET     /                           controllers.HomeController.index()
-GET     /create                     controllers.CreateController.index()
+GET     /create                     controllers.CreateController.index(mode: Mode = NormalMode)
 GET     /viewsuperheros             controllers.ViewSuperherosController.index()
 
 # Map static resources from the /public folder to the /assets URL path

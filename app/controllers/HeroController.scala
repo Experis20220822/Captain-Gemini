@@ -81,7 +81,7 @@ import scala.util.Success
 
         },
         heroData => {
-          val id = MurmurHash3.stringHash(heroData.name)
+         // val id = MurmurHash3.stringHash(heroData.name)
           val newUser = models.Hero(
            // id,
             heroData.name,
