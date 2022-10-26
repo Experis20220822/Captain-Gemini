@@ -2,14 +2,14 @@ kind: Service
 apiVersion: v1
 metadata:
   labels:
-    app: heatwave-service
+    app: captain-gemini-service
     stack: frontend
-  name: heatwave-service
+  name: captain-gemini-service
   namespace: default
 spec:
   selector:
     source: demo
-    app: heatwave
+    app: captain-gemini
   ports:
     -   name: web
         protocol: TCP
@@ -22,18 +22,18 @@ metadata:
   labels:
     stack: frontend
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /heatwave$1$2
-  name: heatwave-ingress-path
+    nginx.ingress.kubernetes.io/rewrite-target: /captain-gemini$1$2
+  name: captain-gemini-ingress-path
   namespace: default
 spec:
   rules:
     - http:
         paths:
-          -   path: /heatwave(/|$)(.*)
+          -   path: /captain-gemini(/|$)(.*)
               pathType: Prefix
               backend:
                 service:
-                  name: heatwave-service
+                  name: captain-gemini-service
                   port:
                     number: 30201
 ---
@@ -41,27 +41,27 @@ kind: Deployment
 apiVersion: apps/v1
 metadata:
   labels:
-    app: heatwave
+    app: captain-gemini
     stack: frontend
     source: demo
-  name: heatwave
+  name: captain-gemini
   namespace: default
 spec:
   replicas: 3
   selector:
     matchLabels:
-      run: heatwave
+      run: captain-gemini
   template:
     metadata:
       labels:
-        app: heatwave
-        run: heatwave
+        app: captain-gemini
+        run: captain-gemini
         source: demo
       namespace: default
     spec:
       containers:
-        -   image: 219099013464.dkr.ecr.us-west-2.amazonaws.com/heatwave
-            name: heatwave
+        -   image: 219099013464.dkr.ecr.us-west-2.amazonaws.com/captain-gemini
+            name: captain-gemini
             ports:
               -   name: web
                   containerPort: 9000
@@ -69,12 +69,12 @@ spec:
               -   name: MONGO_HOST
                   valueFrom:
                     configMapKeyRef:
-                      name: heatwave-configmap
+                      name: captain-gemini-configmap
                       key: mongo_host
               -   name: MONGO_PORT
                   valueFrom:
                     configMapKeyRef:
-                      name: heatwave-configmap
+                      name: captain-gemini-configmap
                       key: mongo_port
               -   name: MONGO_USERNAME
                   value: root
@@ -84,4 +84,4 @@ spec:
                       name: mongodb
                       key: mongodb-root-password
               -   name: DATABASE_NAME
-                  value: heatwave
+                  value: captain-gemini

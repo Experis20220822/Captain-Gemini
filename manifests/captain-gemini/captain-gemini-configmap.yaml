@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: heatwave-configmap
+  name: captain-gemini-configmap
   namespace: default
 data:
   mongo_host: "mongodb"
