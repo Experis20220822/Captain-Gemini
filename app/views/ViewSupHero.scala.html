@@ -18,7 +18,286 @@ justify-content: space-between;
     color: #fff;
     cursor: crosshair;
 }
+<!--Navbar Ends Here###-->
 
+<!--#########################-->
+
+* {box-sizing:border-box}
+
+/* Slideshow container */
+.slideshow-container {
+  max-width: 1000px;
+  position: relative;
+  margin: auto;
+  align-items: center;
+}
+
+/* Hide the images by default */
+.mySlides {
+  display: none;
+  align-items: center;
+}
+
+/* Next & previous buttons */
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  margin-top: -22px;
+  padding: 16px;
+  color: white;
+  font-weight: bold;
+  font-size: 30px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+  background-color: #eb196e;
+}
+
+/* Position the "next button" to the right */
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+  background-color: rgba(0,0,0,0.8);
+}
+
+/* Caption text */
+.text {
+  color: #f2f2f2;
+  font-size: 15px;
+  padding: 8px 12px;
+  position: absolute;
+  bottom: 8px;
+  width: 100%;
+  text-align: center;
+}
+
+/* Number text (1/3 etc) */
+.numbertext {
+  color: #f2f2f2;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+}
+
+/* The dots/bullets/indicators */
+.dot {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active, .dot:hover {
+  background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@@keyframes fade {
+  from {opacity: .4}
+  to {opacity: 1}
+}
+
+/* ################## */
+
+
+.card-container {
+  display: grid;
+
+  grid-gap: 50px;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f5f5f5;
+  font-family: 'Baloo Paaji 2', cursive;
+}
+
+.card {
+  background-color: #222831;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: rgba(0, 0, 0, 0.7);
+  color: white;
+  width: 400px;
+  margin: auto;
+}
+
+.card__name {
+  margin-top: 15px;
+  margin-bottom: 0;
+  font-size: 2em;
+}
+
+.card__slogon {
+    margin-top: 5px;
+    margin-bottom: 25px;
+    font-size: 1.2em;
+    padding: 5px;
+    border: #eb196e solid 1px;
+}
+
+.card__image {
+  height: 160px;
+  width: 160px;
+  border-radius: 50%;
+  border: 5px solid #272133;
+  margin-top: 20px;
+  box-shadow: 0 10px 50px rgba(235, 25, 110, 1);
+}
+
+.draw-border {
+  box-shadow: inset 0 0 0 4px #58cdd1;
+  color: #58afd1;
+  -webkit-transition: color 0.25s 0.0833333333s;
+  transition: color 0.25s 0.0833333333s;
+  position: relative;
+}
+
+.draw-border::before,
+.draw-border::after {
+  border: 0 solid transparent;
+  box-sizing: border-box;
+  content: '';
+  pointer-events: none;
+  position: absolute;
+  width: 0rem;
+  height: 0;
+  bottom: 0;
+  right: 0;
+}
+
+.draw-border::before {
+  border-bottom-width: 4px;
+  border-left-width: 4px;
+}
+
+.draw-border::after {
+  border-top-width: 4px;
+  border-right-width: 4px;
+}
+
+.draw-border:hover {
+  color: #ffe593;
+}
+
+.draw-border:hover::before,
+.draw-border:hover::after {
+  border-color: #eb196e;
+  -webkit-transition: border-color 0s, width 0.25s, height 0.25s;
+  transition: border-color 0s, width 0.25s, height 0.25s;
+  width: 100%;
+  height: 100%;
+}
+
+.draw-border:hover::before {
+  -webkit-transition-delay: 0s, 0s, 0.25s;
+  transition-delay: 0s, 0s, 0.25s;
+}
+
+.draw-border:hover::after {
+  -webkit-transition-delay: 0s, 0.25s, 0s;
+  transition-delay: 0s, 0.25s, 0s;
+}
+
+.btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  line-height: 1.5;
+  font: 700 1.2rem 'Roboto Slab', sans-serif;
+  padding: 0.75em 2em;
+  letter-spacing: 0.05rem;
+  margin: 1em;
+  width: 13rem;
+}
+
+.btn:focus {
+  outline: 2px dotted #55d7dc;
+}
+
+.social-icons {
+  padding: 0;
+  list-style: none;
+  margin: 0;
+}
+
+.social-icons li {
+  display: inline-block;
+  margin: 0;
+  position: relative;
+  font-size: 1em;
+}
+
+.social-icons i {
+  color: #fff;
+  position: absolute;
+  top: 0.95em;
+  left: 0.96em;
+  transition: all 265ms ease-out;
+}
+
+.social-icons p {
+    margin: 15px;
+    padding: 0;
+    font-size: 1.3rem
+ }
+
+.social-icons a {
+  display: inline-block;
+}
+
+.social-icons a:before {
+  transform: scale(1);
+  -ms-transform: scale(1);
+  -webkit-transform: scale(1);
+  content: " ";
+  width: 45px;
+  height: 45px;
+  border-radius: 100%;
+  display: block;
+  background: linear-gradient(45deg, #ff003c, #c648c8);
+  transition: all 265ms ease-out;
+}
+
+.social-icons a:hover:before {
+  transform: scale(0);
+  transition: all 265ms ease-in;
+}
+
+.social-icons a:hover i {
+  transform: scale(2.2);
+  -ms-transform: scale(2.2);
+  -webkit-transform: scale(2.2);
+  color: #ff003c;
+  background: -webkit-linear-gradient(45deg, #ff003c, #c648c8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: all 265ms ease-in;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    grid-gap: 0;
+
+}
 </style>
 
 <div class="govuk-width-container">
@@ -38,19 +317,174 @@ justify-content: space-between;
 
         <div class="govuk-grid-row">
             <div class="govuk-grid-column-two-thirds">
-                <h1 class="govuk-heading-xl">Superheros</h1>
+                <h1 class="govuk-heading-xl">Superheroes</h1>
                 <div class="govuk-inset-text">
-                    You've found us
+                    You've found us!
+                    <br>
+                    <br>
+                    Flick through the Superheroes and select one you want to battle with!
                 </div>
             </div>
         </div>
-        <div>
-            Test Text
+
+        <!-- Slideshow container -->
+        <div class="slideshow-container">
+            <!-- Full-width images with number and caption text -->
+            <div class="mySlides fade">
+                <div class="card-container">
+                    <div class="card">
+                        <img src="https://lh3.googleusercontent.com/oUUiPB9sq3ACq4bUaRmo8pgvC4FUpRRrQKcGIBSOsafawZfRpF1vruFeYt6uCfL6wGDQyvOi6Ez9Bpf1Fb7APKjIyVsft7FLGR6QqdRFTiceNQBm1In9aZyrXp33cZi9pUNqjHASdA=s170-no" alt="Person" class="card__image">
+                        <p class="card__name">Germinator</p>
+                        <div class="card__slogon_container">
+                            <p class="card__slogon">"I've been doing martial arts all my Life"</p>
+                        </div>
+
+                        <ul class="social-icons grid-container">
+                            <p>Strength</p>
+                            <li><a href="#"><i>85</i></a></li>
+                            <p>Intellect</p>
+                            <li><a href="#"><i>31</i></a></li>
+                            <p>Speed</p>
+                            <li><a href="#"><i>74</i></a></li>
+                            <p>Charisma</p>
+                            <li><a href="#"><i>12</i></a></li>
+                        </ul>
+                        <button class="btn draw-border">Select for battle</button>
+                    </div>
+                </div>
+                <div class="text">Caption Text</div>
+            </div>
+
+            <div class="mySlides fade">
+                <div class="card-container">
+                    <div class="card">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_NCp8q_uCPRrL4e8t_82dMYAxJhHmocuWCg&usqp=CAU" alt="Person" class="card__image">
+                        <p class="card__name">Ste</p>
+                        <div class="card__slogon_container">
+                            <p class="card__slogon"> "I Can Do This All Day." </p>
+                        </div>
+
+                        <ul class="social-icons grid-container">
+                            <p>Strength</p>
+                            <li><a href="#"><i>56</i></a></li>
+                            <p>Intellect</p>
+                            <li><a href="#"><i>78</i></a></li>
+                            <p>Speed</p>
+                            <li><a href="#"><i>89</i></a></li>
+                            <p>Charisma</p>
+                            <li><a href="#"><i>43</i></a></li>
+                        </ul>
+                        <button class="btn draw-border">Select for battle</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mySlides fade">
+                <div class="card-container">
+                    <div class="card">
+                        <img src="https://uploads.dailydot.com/2018/05/superheroes_for_kids_spider_man.jpg?auto=compress&fm=pjpg" alt="Person" class="card__image">
+                        <p class="card__name">Romel</p>
+                        <div class="card__slogon_container">
+                            <p class="card__slogon">"Truth, Justice..."</p>
+                        </div>
+
+                        <ul class="social-icons grid-container">
+                            <p>Strength</p>
+                            <li><a href="#"><i>56</i></a></li>
+                            <p>Intellect</p>
+                            <li><a href="#"><i>65</i></a></li>
+                            <p>Speed</p>
+                            <li><a href="#"><i>75</i></a></li>
+                            <p>Charisma</p>
+                            <li><a href="#"><i>23</i></a></li>
+                        </ul>
+                        <button class="btn draw-border">Select for battle</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mySlides fade">
+                <div class="card-container">
+                    <div class="card">
+                        <img src="https://www.biowars.com/blog/wp-content/uploads/2022/01/masked-superheroes-wolverine.jpg" alt="Person" class="card__image">
+                        <p class="card__name">Gary</p>
+                        <div class="card__slogon_container">
+                            <p class="card__slogon">"Spoon!"</p>
+                        </div>
+
+                        <ul class="social-icons grid-container">
+                            <p>Strength</p>
+                            <li><a href="#"><i>98</i></a></li>
+                            <p>Intellect</p>
+                            <li><a href="#"><i>97</i></a></li>
+                            <p>Speed</p>
+                            <li><a href="#"><i>98</i></a></li>
+                            <p>Charisma</p>
+                            <li><a href="#"><i>100</i></a></li>
+                        </ul>
+                        <button class="btn draw-border">Select for battle</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mySlides fade">
+                <div class="card-container">
+                    <div class="card">
+                        <img src="https://britmovietours.com/wp-content/uploads/PowBatman.jpg" alt="Person" class="card__image">
+                        <p class="card__name">Jacques</p>
+                        <div class="card__slogon_container">
+                            <p class="card__slogon">"Sweet Christmas!"</p>
+                        </div>
+
+                        <ul class="social-icons grid-container">
+                            <p>Strength</p>
+                            <li><a href="#"><i>77</i></a></li>
+                            <p>Intellect</p>
+                            <li><a href="#"><i>55</i></a></li>
+                            <p>Speed</p>
+                            <li><a href="#"><i>66</i></a></li>
+                            <p>Charisma</p>
+                            <li><a href="#"><i>44</i></a></li>
+                        </ul>
+                        <button class="btn draw-border">Select for battle</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Next and previous buttons -->
+            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
         </div>
-
-
-
-
     </main>
 </div>
 
+<script>
+    let slideIndex = 1;
+showSlides(slideIndex);
+
+// Next/previous controls
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+// Thumbnail image controls
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+  let i;
+  let slides = document.getElementsByClassName("mySlides");
+  let dots = document.getElementsByClassName("dot");
+  if (n > slides.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";
+  }
+  for (i = 0; i < dots.length; i++) {
+    dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block";
+  dots[slideIndex-1].className += " active";
+}
+</script>
