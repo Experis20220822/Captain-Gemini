@@ -105,6 +105,7 @@ lazy val itSettings = Defaults.itSettings ++ Seq(
 
 libraryDependencies ++= AppDependencies()
 
+
 name := """captain-gemini"""
 organization := "com.captain-gemini"
 

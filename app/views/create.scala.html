@@ -3,65 +3,17 @@
  *
  *@
 
-@import viewmodels.InputWidth._
+@import uk.gov.hmrc.govukfrontend.views.html.components._
+@import uk.gov.hmrc.govukfrontend.views.html.components.implicits._
+@import uk.gov.hmrc.govukfrontend.views.Implicits._
+@import views.html.CreatePage
 
-@this(
-        layout: views.html.Layout,
-        formHelper: FormWithCSRF,
-        govukErrorSummary: GovukErrorSummary,
-        govukInput: GovukInput,
-        govukButton: GovukButton,
-        govukBackLink: GovukBackLink,
-        govukHint: GovukHint,
-)
+@this(layout: Layout, createPage: CreatePage)
 
-@(form: Form[_], mode: Mode)(implicit request: Request[_], messages: Messages)
+@(pageTitle: String, heading: String, message: String)(implicit request: Request[_], messages: Messages)
 
-@layout(pageTitle = title(form, messages("Create")), isWelshTranslationAvailable = true) {
+@import uk.gov.hmrc.play._
 
- @govukBackLink(BackLink(href = routes.HomeController.index().url))
-
- @formHelper(action = routes.CreateController.index(), 'autoComplete -> "off") {
-
-  @if(form.errors.nonEmpty) {
-   @govukErrorSummary(ErrorSummaryViewModel(form))
-  }
-
-
-  <h1 class="govuk-heading-xl">Create an account for service</h1>
-
-  @govukInput(Input(
-   id = "email",
-   name = "email",
-   label = Label(content = Text("Email")),
-   value = form("email").value,
-   errorMessage = form("email").error.map(err => ErrorMessage(content = Text(messages(err.message, err.args: _*)))),
-   classes = "govuk-!-width-one-half",
-   hint = Some(Hint(content = Text("We’ll only use this to send you a receipt"))),
-  ))
-
-  @govukInput(Input(
-   id = "username",
-   name = "username",
-   label = Label(content = Text(messages("Username"))),
-   value = form("username").value,
-   errorMessage = form("username").error.map(err => ErrorMessage(content = Text(messages(err.message, err.args: _*)))),
-   classes = "govuk-!-width-one-half"
-  ))
-
-
-  @govukInput(Input(
-   id = "password",
-   name = "password",
-   label = Label(content = Text(messages("Password"))),
-   value = form("password").value,
-   errorMessage = form("password").error.map(err => ErrorMessage(content = Text(messages(err.message, err.args: _*)))),
-   classes = "govuk-!-width-one-half",
-   inputType = "password"
-  ))
-
-  @govukButton(
-   ButtonViewModel(messages("site.continue"))
-  )
- }
+@layout(pageTitle = pageTitle, isWelshTranslationAvailable = true) {
+ @createPage()
 }

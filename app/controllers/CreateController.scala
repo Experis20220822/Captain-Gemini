@@ -31,7 +31,7 @@ import scala.concurrent.{ExecutionContext, Future}
   )
 
   def index(mode: Mode) = Action { implicit request =>
-    Ok(view(form, mode))
+    Ok(view("","",""))
   }
 
   def textInput() = Action {implicit req =>

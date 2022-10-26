@@ -26,7 +26,7 @@ import play.api.mvc.{Action, AnyContent, MessagesControllerComponents, MessagesR
 
 import play.filters.csrf.CSRF
 import uk.gov.hmrc.play.bootstrap.frontend.controller.FrontendController
-import views.html.create
+import views.html.createHero.heroes
 import views.html.text_input
 
 import scala.concurrent.{ExecutionContext, Future}
@@ -36,7 +36,7 @@ import scala.util.Success
 
 @Singleton class HeroController @Inject() (
                                 val mcc: MessagesControllerComponents,
-                                view: create,
+                                view: heroes,
                                 heroService: AsyncHeroService)
                                (implicit val executionContext: ExecutionContext) extends FrontendController(mcc)
   with I18nSupport {
