@@ -1,7 +1,7 @@
 @*
-* Copyright 2022 HM Revenue & Customs
-*
-*@
+ * Copyright 2022 HM Revenue & Customs
+ *
+ *@
 
 @import uk.gov.hmrc.govukfrontend.views.Aliases.Button
 
@@ -18,6 +18,7 @@ justify-content: space-between;
     color: #fff;
     cursor: crosshair;
 }
+
 
 
 
@@ -45,14 +46,21 @@ var nameNounArray = [
 "Actor", "Gold", "Painting", "Advertisement", "Grass", "Parrot", "Afternoon", "Greece", "Pencil", "Airport", "Guitar", "Piano", "Ambulance", "Hair", "Pillow", "Animal", "Hamburger", "Pizza", "Answer", "Helicopter", "Planet", "Apple", "Helmet", "Plastic", "Army", "Holiday", "Portugal", "Australia", "Honey", "Potato", "Balloon", "Horse", "Queen", "Banana", "Hospital", "Quill", "Battery", "House", "Rain", "Beach", "Hydrogen", "Rainbow", "Beard", "Ice", "Raincoat", "Bed", "Insect", "Refrigerator", "Belgium", "Insurance", "Restaurant", "Boy", "Iron", "River", "Branch", "Island", "Rocket", "Breakfast", "Jackal", "Room", "Brother", "Jelly", "Rose", "Camera", "Jewellery", "Russia", "Candle", "Jordan", "Sandwich", "Car", "Juice", "School", "Caravan", "Kangaroo", "Scooter", "Carpet", "King", "Shampoo", "Cartoon", "Kitchen", "Shoe", "China", "Kite", "Soccer", "Church", "Knife", "Spoon", "Crayon", "Lamp", "Stone", "Crowd", "Lawyer", "Sugar", "Daughter", "Leather", "Sweden", "Death", "Library", "Teacher", "Denmark", "Lighter", "Telephone", "Diamond", "Lion", "Television", "Dinner", "Lizard", "Tent", "Disease", "Lock", "Thailand", "Doctor", "London", "Tomato", "Dog", "Lunch", "Toothbrush", "Dream", "Machine", "Traffic", "Dress", "Magazine", "Train", "Easter", "Magician", "Truck", "Egg", "Manchester", "Uganda", "Eggplant", "Market", "Umbrella", "Egypt", "Match", "Van", "Elephant", "Microphone", "Vase", "Energy", "Monkey", "Vegetable", "Engine", "Morning", "Vulture", "England", "Motorcycle", "Wall", "Evening", "Nail", "Whale", "Eye", "Napkin", "Window", "Family", "Needle", "Wire", "Finland", "Nest", "Xylophone", "Fish", "Nigeria", "Yacht", "Flag", "Night", "Yak", "Flower", "Notebook", "Zebra", "Football", "Ocean", "Zoo", "Forest", "Oil", "Garden", "Fountain", "Orange", "Gas", "France", "Oxygen", "Girl", "Furniture", "Oyster", "Glass", "Garage", "Ghost"
 ];
 
-var randomAdjective = Math.floor(Math.random()*nameAdjectiveArray.length);
-
-var randomNoun = Math.floor(Math.random()*nameNounArray.length);
-
-<!--audioElement.setAttribute('src', textArray[randomAdjective + randomNoun]);-->
+var sloganArray = [
+"I am not who I am.", "There is more in me than anyone can see.", "Doing wonders is my recognition.", "Privileged with great superpowers and intelligence.", "Heroes are made by choice.", "A superhero that you can trust.", "We are going to make a difference.", "Anyone can be a superhero by doing good deeds.", "Superpowers come with significant responsibilities.", "Dying is not in the dictionary of superheroes.", "The man of superpowers.", "Avengers Assemble!", "Cats come when they feel like it, not when they're told.", "Flame on!", "I am the law.", "I hope justice is found here today...before justice finds you.", "I'm the best there is at what I do.", "I'm the fastest man alive.", "It's clobbering time!", "Sometimes when you cage the beast, the beast gets angry.", "The Emerald Crusader.", "Sworn to protect a world that hates and fears them.", "Here comes the A train, baby!", "Wake me when you need me...", "A wizard is never late, nor is he early. He arrives precisely when he means to.", "By Crom!", "Cowabunga!", "You have failed this city...", "Forth Eorlingas!", "Ride now, ride now! Ride to Gondor!", "Arise, arise, Riders of Theoden!", "Evil is evil. Lesser, greater, middling... Makes no difference.", "That's what I do. I drink, and I know things.", "I am a servant of the Secret Fire, wielder of the flame of Anor.", "He that breaks a thing to find out what it is has left the path of wisdom.",
+];
 
 function generateName() {
+    var randomAdjective = Math.floor(Math.random()*nameAdjectiveArray.length);
+    var randomNoun = Math.floor(Math.random()*nameNounArray.length);
+
     document.getElementById("hero-name").value = nameAdjectiveArray[randomAdjective] + " " + nameNounArray[randomNoun];
+}
+
+function generateSlogan() {
+    var randomSlogan = Math.floor(Math.random()*sloganArray.length);
+
+    document.getElementById("slogan-val").value = sloganArray[randomSlogan];
 }
 
 
@@ -101,7 +109,7 @@ function generateName() {
             </label>
             </h1>
             <input class="govuk-input" id="slogan-val" name="event-name" type="text">
-            <button>Generate</button>
+            <button onclick="generateSlogan()">Generate</button>
         </div>
 
         <div class="govuk-form-group">
