@@ -1,7 +1,7 @@
 @*
- * Copyright 2022 HM Revenue & Customs
- *
- *@
+* Copyright 2022 HM Revenue & Customs
+*
+*@
 
 @import uk.gov.hmrc.govukfrontend.views.Aliases.Button
 
@@ -19,98 +19,146 @@ justify-content: space-between;
     cursor: crosshair;
 }
 
+
+
+
 </style>
+
+<script type="text/javascript">
+
+  function generateNumber(){
+    return Math.floor(Math.random() * 100) + 1;
+  }
+
+  function generateStats() {
+    document.getElementById("strength-val").value = generateNumber();
+    document.getElementById("intellect-val").value = generateNumber();
+    document.getElementById("speed-val").value = generateNumber();
+    document.getElementById("charisma-val").value = generateNumber();
+  }
+
+var nameAdjectiveArray = [
+"Adorable", "Adventurous", "Aggressive", "Agreeable", "Alert", "Alive", "Amused", "Angry", "Annoyed", "Annoying", "Anxious", "Arrogant", "Ashamed", "Attractive", "Average", "Awful", "Bad", "Beautiful", "Better", "Bewildered", "Black", "Bloody", "Blue", "Blue-eyed", "Blushing", "Bored", "Brainy", "Brave", "Breakable", "Bright", "Busy", "Calm", "Careful", "Cautious", "Charming", "Cheerful", "Clean", "Clear", "Clever", "Cloudy", "Clumsy", "Colorful", "Combative", "Comfortable", "Concerned", "Condemned", "Confused", "Cooperative", "Courageous", "Crazy", "Creepy", "Crowded", "Cruel", "Curious", "Cute", "Dangerous", "Dark", "Dead", "Defeated", "Defiant", "Delightful", "Depressed", "Determined", "Different", "Difficult", "Disgusted", "Distinct", "Disturbed", "Dizzy", "Doubtful", "Drab", "Dull", "Eager", "Easy", "Elated", "Elegant", "Embarrassed", "Enchanting", "Encouraging", "Energetic", "Enthusiastic", "Envious", "Evil", "Excited", "Expensive", "Exuberant", "Fair", "Faithful", "Famous", "Fancy", "Fantastic", "Fierce", "Filthy", "Fine", "Foolish", "Fragile", "Frail", "Frantic", "Friendly", "Frightened", "Funny", "Gentle", "Gifted", "Glamorous", "Gleaming", "Glorious", "Good", "Gorgeous", "Graceful", "Grieving", "Grotesque", "Grumpy", "Handsome", "Happy", "Healthy", "Helpful", "Helpless", "Hilarious", "Homeless", "Homely", "Horrible", "Hungry", "Hurt", "Ill", "Important", "Impossible", "Inexpensive", "Innocent", "Inquisitive", "Itchy", "Jealous", "Jittery", "Jolly", "Joyous", "Kind", "Lazy", "Light", "Lively", "Lonely", "Long", "Lovely", "Lucky", "Magnificent", "Misty", "Modern", "Motionless", "Muddy", "Mushy", "Mysterious", "Nasty", "Naughty", "Nervous", "Nice", "Nutty", "Obedient", "Obnoxious", "Odd", "Old-fashioned", "Open", "Outrageous", "Outstanding", "Panicky", "Perfect", "Plain", "Pleasant", "Poised", "Poor", "Powerful", "Precious", "Prickly", "Proud", "Putrid", "Puzzled", "Quaint", "Real", "Relieved", "Repulsive", "Rich", "Scary", "Selfish", "Shiny", "Shy", "Silly", "Sleepy", "Smiling", "Smoggy", "Sore", "Sparkling", "Splendid", "Spotless", "Stormy", "Strange", "Stupid", "Successful", "Super", "Talented", "Tame", "Tasty", "Tender", "Tense", "Terrible", "Thankful", "Thoughtful", "Thoughtless", "Tired", "Tough", "Troubled", "Ugliest", "Ugly", "Uninterested", "Unsightly", "Unusual", "Upset", "Uptight", "Vast", "Victorious", "Vivacious", "Wandering", "Weary", "Wicked", "Wide-eyed", "Wild", "Witty", "Worried", "Worrisome", "Wrong", "Zany", "Zealous"
+];
+
+var nameNounArray = [
+"Actor", "Gold", "Painting", "Advertisement", "Grass", "Parrot", "Afternoon", "Greece", "Pencil", "Airport", "Guitar", "Piano", "Ambulance", "Hair", "Pillow", "Animal", "Hamburger", "Pizza", "Answer", "Helicopter", "Planet", "Apple", "Helmet", "Plastic", "Army", "Holiday", "Portugal", "Australia", "Honey", "Potato", "Balloon", "Horse", "Queen", "Banana", "Hospital", "Quill", "Battery", "House", "Rain", "Beach", "Hydrogen", "Rainbow", "Beard", "Ice", "Raincoat", "Bed", "Insect", "Refrigerator", "Belgium", "Insurance", "Restaurant", "Boy", "Iron", "River", "Branch", "Island", "Rocket", "Breakfast", "Jackal", "Room", "Brother", "Jelly", "Rose", "Camera", "Jewellery", "Russia", "Candle", "Jordan", "Sandwich", "Car", "Juice", "School", "Caravan", "Kangaroo", "Scooter", "Carpet", "King", "Shampoo", "Cartoon", "Kitchen", "Shoe", "China", "Kite", "Soccer", "Church", "Knife", "Spoon", "Crayon", "Lamp", "Stone", "Crowd", "Lawyer", "Sugar", "Daughter", "Leather", "Sweden", "Death", "Library", "Teacher", "Denmark", "Lighter", "Telephone", "Diamond", "Lion", "Television", "Dinner", "Lizard", "Tent", "Disease", "Lock", "Thailand", "Doctor", "London", "Tomato", "Dog", "Lunch", "Toothbrush", "Dream", "Machine", "Traffic", "Dress", "Magazine", "Train", "Easter", "Magician", "Truck", "Egg", "Manchester", "Uganda", "Eggplant", "Market", "Umbrella", "Egypt", "Match", "Van", "Elephant", "Microphone", "Vase", "Energy", "Monkey", "Vegetable", "Engine", "Morning", "Vulture", "England", "Motorcycle", "Wall", "Evening", "Nail", "Whale", "Eye", "Napkin", "Window", "Family", "Needle", "Wire", "Finland", "Nest", "Xylophone", "Fish", "Nigeria", "Yacht", "Flag", "Night", "Yak", "Flower", "Notebook", "Zebra", "Football", "Ocean", "Zoo", "Forest", "Oil", "Garden", "Fountain", "Orange", "Gas", "France", "Oxygen", "Girl", "Furniture", "Oyster", "Glass", "Garage", "Ghost"
+];
+
+var randomAdjective = Math.floor(Math.random()*nameAdjectiveArray.length);
+
+var randomNoun = Math.floor(Math.random()*nameNounArray.length);
+
+<!--audioElement.setAttribute('src', textArray[randomAdjective + randomNoun]);-->
+
+function generateName() {
+    document.getElementById("hero-name").value = nameAdjectiveArray[randomAdjective] + " " + nameNounArray[randomNoun];
+}
+
+
+
+</script>
 
 <div class="govuk-width-container">
 
-  <nav class="hmrc-language-select sup-nav">
-    <ul class="hmrc-language-select__list">
-      <li class="hmrc-language-select__list-item">
-        <a href="/">Home</a>
-      </li>
-      <li class="hmrc-language-select__list-item" href="/login">
-        <a href="viewsuperheros">View Superheroes</a>
-      </li>
-    </ul>
-  </nav>
+    <nav class="hmrc-language-select sup-nav">
+        <ul class="hmrc-language-select__list">
+            <li class="hmrc-language-select__list-item">
+                <a href="/">Home</a>
+            </li>
+            <li class="hmrc-language-select__list-item" href="/login">
+                <a href="viewsuperheros">View Superheroes</a>
+            </li>
+        </ul>
+    </nav>
 
-  <main class="govuk-main-wrapper">
+    <main class="govuk-main-wrapper">
 
-    <div class="govuk-grid-row">
-      <div class="govuk-grid-column-two-thirds">
-        <h1 class="govuk-heading-xl">Create a Superhero</h1>
-        <div class="govuk-inset-text">
-          “Everything you can imagine is real.”
-          <br>
-          <br>
-          Now go and create a Superhero and get ready to battle!
+        <div class="govuk-grid-row">
+            <div class="govuk-grid-column-two-thirds">
+                <h1 class="govuk-heading-xl">Create a Superhero</h1>
+                <div class="govuk-inset-text">
+                    “Everything you can imagine is real.”
+                    <br>
+                    <br>
+                    Now go and create a Superhero and get ready to battle!
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
 
-    <div class="govuk-form-group">
-      <h1 class="govuk-label-wrapper"><label class="govuk-label govuk-label--l" for="event-name">
-        Superhero name
-      </label>
-      </h1>
-      <input class="govuk-input" id="event-name" name="event-name" type="text">
-    </div>
+        <div class="govuk-form-group">
+            <h1 class="govuk-label-wrapper"><label class="govuk-label govuk-label--l" for="hero-name">
+                Superhero name
+            </label>
+            </h1>
+            <input class="govuk-input" id="hero-name" name="event-name" type="text">
+            <button onclick="generateName()">Generate</button>
+        </div>
 
-    <div class="govuk-form-group">
-      <h1 class="govuk-label-wrapper"><label class="govuk-label govuk-label--l" for="event-name">
-        Slogan
-      </label>
-      </h1>
-      <input class="govuk-input" id="event-name" name="event-name" type="text">
-    </div>
+        <div class="govuk-form-group">
+            <h1 class="govuk-label-wrapper"><label class="govuk-label govuk-label--l" for="slogan-val">
+                Slogan
+            </label>
+            </h1>
+            <input class="govuk-input" id="slogan-val" name="event-name" type="text">
+            <button>Generate</button>
+        </div>
 
-    <div class="govuk-form-group">
-      <h1 class="govuk-label-wrapper"><label class="govuk-label govuk-label--l" for="event-name">
-        Attribute 1 (Strength)
-      </label>
-      </h1>
-      <input class="govuk-input" id="event-name" name="event-name" type="text">
-    </div>
+        <div class="govuk-form-group">
+            <button onclick="generateStats()">Generate</button>
+        </div>
 
-    <div class="govuk-form-group">
-      <h1 class="govuk-label-wrapper"><label class="govuk-label govuk-label--l" for="event-name">
-        Attribute 2 (Intellect)
-      </label>
-      </h1>
-      <input class="govuk-input" id="event-name" name="event-name" type="text">
-    </div>
+        <div class="govuk-form-group">
+            <h1 class="govuk-label-wrapper"><label class="govuk-label govuk-label--l" for="strength-val">
+                Attribute 1 (Strength)
+            </label>
+            </h1>
+            <input class="govuk-input" id="strength-val" name="event-name" type="text" readonly>
+        </div>
 
-    <div class="govuk-form-group">
-      <h1 class="govuk-label-wrapper"><label class="govuk-label govuk-label--l" for="event-name">
-        Attribute 3 (Speed)
-      </label>
-      </h1>
-      <input class="govuk-input" id="event-name" name="event-name" type="text">
-    </div>
+        <div class="govuk-form-group">
+            <h1 class="govuk-label-wrapper"><label class="govuk-label govuk-label--l" for="intellect-val">
+                Attribute 2 (Intellect)
+            </label>
+            </h1>
+            <input class="govuk-input" id="intellect-val" name="event-name" type="text" readonly>
+        </div>
 
-    <div class="govuk-form-group">
-      <h1 class="govuk-label-wrapper"><label class="govuk-label govuk-label--l" for="event-name">
-        Attribute 4 (Charisma)
-      </label>
-      </h1>
-      <input class="govuk-input" id="event-name" name="event-name" type="text">
-    </div>
+        <div class="govuk-form-group">
+            <h1 class="govuk-label-wrapper"><label class="govuk-label govuk-label--l" for="speed-val">
+                Attribute 3 (Speed)
+            </label>
+            </h1>
+            <input class="govuk-input" id="speed-val" name="event-name" type="text" readonly>
+        </div>
 
-    <div class="govuk-form-group">
-      <h1 class="govuk-label-wrapper"><label class="govuk-label govuk-label--l" for="event-name">
-        Image URL
-      </label>
-      </h1>
-      <input class="govuk-input" id="event-name" name="event-name" type="text">
-    </div>
+        <div class="govuk-form-group">
+            <h1 class="govuk-label-wrapper"><label class="govuk-label govuk-label--l" for="charisma-val">
+                Attribute 4 (Charisma)
+            </label>
+            </h1>
+            <input class="govuk-input" id="charisma-val" name="event-name" type="text" readonly>
+        </div>
 
-    <a href="#" role="button" draggable="false" class="govuk-button govuk-button--start" data-module="govuk-button">
-      Make it real!
-      <svg class="govuk-button__start-icon" xmlns="http://www.w3.org/2000/svg" width="17.5" height="19" viewBox="0 0 33 40" aria-hidden="true" focusable="false">
-        <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z" />
-      </svg></a>
+        <div class="govuk-form-group">
+            <h1 class="govuk-label-wrapper"><label class="govuk-label govuk-label--l" for="image-val">
+                Image URL
+            </label>
+            </h1>
+            <input class="govuk-input" id="image-val" name="event-name" type="text">
+        </div>
 
-  </main>
+        <a href="#" role="button" draggable="false" class="govuk-button govuk-button--start" data-module="govuk-button">
+            Make it real!
+            <svg class="govuk-button__start-icon" xmlns="http://www.w3.org/2000/svg" width="17.5" height="19"
+                 viewBox="0 0 33 40" aria-hidden="true" focusable="false">
+                <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z"/>
+            </svg>
+        </a>
+
+    </main>
 </div>
+
+
 
 
