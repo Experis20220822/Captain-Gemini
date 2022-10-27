@@ -3,34 +3,148 @@
  *
  *@
 
-@(heroes: List[Hero])
+@import viewmodels.InputWidth._
 
-@*
-@main("Heroes"){
-    @if(stadiums.size == 1) {
-        <h1>Welcome, there is @stadiums.size stadium to look at!</h1>
-    } else {
-        <h1>Welcome, there are @stadiums.size stadiums to look at!</h1>
-    }
+@this(
+        layout: views.html.Layout,
+        formHelper: FormWithCSRF,
+        govukErrorSummary: GovukErrorSummary,
+        govukInput: GovukInput,
+        govukButton: GovukButton,
+        govukBackLink: GovukBackLink,
+        govukHint: GovukHint,
+)
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th scope="col">Name</th>
-                <th scope="col">City</th>
-                <th scope="col">Country</th>
-                <th scope="col">Seats</th>
-            </tr>
-        </thead>
-        <tbody>
-        @for(stadium <-stadiums) {
-            <tr>
-                <td>@stadium.name</td>
-                <td>@stadium.city</td>
-                <td>@stadium.country</td>
-                <td>@stadium.seats</td>
-            </tr>
+@(form: Form[_], mode: Mode)(implicit request: Request[_], messages: Messages)
+
+@layout(pageTitle = title(form, messages("Create")), isWelshTranslationAvailable = true) {
+
+    @govukBackLink(BackLink(href = routes.HomeController.index().url))
+
+    @formHelper(action = routes.CreateController.index(), 'autoComplete -> "off") {
+
+        @if(form.errors.nonEmpty) {
+            @govukErrorSummary(ErrorSummaryViewModel(form))
         }
-        </tbody>
-    </table>
-}*@
+
+        <style>
+                .sup-nav {
+                    display: flex;
+                    justify-content: space-between;
+                    padding: 1rem 2rem;
+                    background: #cfd8dc;
+                }
+                .sup-nav ul li a:hover{
+                    color: #fff;
+                    cursor: crosshair;
+                }
+
+        </style>
+
+        <div class="govuk-width-container">
+
+            <nav class="hmrc-language-select sup-nav">
+                <ul class="hmrc-language-select__list">
+                    <li class="hmrc-language-select__list-item">
+                        <a href="/">Home</a>
+                    </li>
+                    <li class="hmrc-language-select__list-item" href="/login">
+                        <a href="viewsuperheros">View Superheroes</a>
+                    </li>
+                </ul>
+            </nav>
+
+
+            <main class="govuk-main-wrapper">
+
+                <div class="govuk-grid-row">
+                    <div class="govuk-grid-column-two-thirds">
+                        <h1 class="govuk-heading-xl">Create a Superhero</h1>
+                        <div class="govuk-inset-text">
+                            “Everything you can imagine is real.”
+                            <br>
+                            <br>
+                            Now go and create a Superhero and get ready to battle!
+                        </div>
+                    </div>
+                </div>
+
+        @govukInput(Input(
+            id = "superhero name",
+            name = "superhero name",
+            label = Label(content = Text("Superhero name")),
+            value = form("superhero name").value,
+            errorMessage = form("superhero name").error.map(err => ErrorMessage(content = Text(messages(err.message, err.args: _*)))),
+            classes = "govuk-!-width-one-half",
+            hint = Some(Hint(content = Text("We’ll only use this to send you a receipt"))),
+        ))
+
+        <div class="govuk-form-group">
+            <h1 class="govuk-label-wrapper"><label class="govuk-label govuk-label--l" for="event-name">
+                Slogan
+            </label>
+            </h1>
+            <input class="govuk-input" id="event-name" name="event-name" type="text">
+        </div>
+
+        @govukInput(Input(
+            id = "power",
+            name = "power",
+            label = Label(content = Text(messages("Power"))),
+            value = form("power").value,
+            errorMessage = form("power").error.map(err => ErrorMessage(content = Text(messages(err.message, err.args: _*)))),
+            classes = "govuk-!-width-one-half"
+        ))
+
+
+        @govukInput(Input(
+            id = "intellect",
+            name = "intellect",
+            label = Label(content = Text(messages("Intellect"))),
+            value = form("intellect").value,
+            errorMessage = form("intellect").error.map(err => ErrorMessage(content = Text(messages(err.message, err.args: _*)))),
+            classes = "govuk-!-width-one-half",
+            inputType = "password"
+        ))
+
+        @govukInput(Input(
+            id = "password",
+            name = "password",
+            label = Label(content = Text(messages("Password"))),
+            value = form("password").value,
+            errorMessage = form("password").error.map(err => ErrorMessage(content = Text(messages(err.message, err.args: _*)))),
+            classes = "govuk-!-width-one-half",
+            inputType = "password"
+        ))
+
+
+        @govukInput(Input(
+            id = "speed",
+            name = "speed",
+            label = Label(content = Text(messages("Speed"))),
+            value = form("speed").value,
+            errorMessage = form("speed").error.map(err => ErrorMessage(content = Text(messages(err.message, err.args: _*)))),
+            classes = "govuk-!-width-one-half",
+            inputType = "password"
+        ))
+
+
+        @govukInput(Input(
+            id = "password",
+            name = "password",
+            label = Label(content = Text(messages("Password"))),
+            value = form("password").value,
+            errorMessage = form("password").error.map(err => ErrorMessage(content = Text(messages(err.message, err.args: _*)))),
+            classes = "govuk-!-width-one-half",
+            inputType = "password"
+        ))
+
+
+        @govukButton(
+            ButtonViewModel(messages("site.continue"))
+        )
+    }
+}
+
+</main>
+</div>

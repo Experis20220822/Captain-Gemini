@@ -10,6 +10,8 @@ import views.html._
 
 import services.AsyncHeroService
 
+import models.Mode
+
 import javax.inject._
 import scala.concurrent.ExecutionContext.Implicits.global // This global ACTION gets view
 import scala.util.hashing.MurmurHash3
@@ -19,23 +21,27 @@ import play.api.data.Forms.{mapping, number, text}
 import play.api.data.validation.Constraints.{max, min, nonEmpty}
 import play.api.i18n.I18nSupport
 //import play.api.mvc.{Action, AnyContent, BaseController, ControllerComponents, MessagesControllerComponents}
-import play.api.mvc._
+import play.api.mvc.{Action, AnyContent, MessagesControllerComponents, MessagesRequest, Request}
+//import play.api.mvc._
 
 import play.filters.csrf.CSRF
 import uk.gov.hmrc.play.bootstrap.frontend.controller.FrontendController
-import views.html.create
+import views.html.createHero.heroes
 import views.html.text_input
 
 import scala.concurrent.{ExecutionContext, Future}
+import scala.util.Success
 
 
-case class HeroData(name: String, img: String, power: Int, intellect: Int, speed: Int, charisma: Int) // change to HeroData
 
-class HeroController @Inject() (
-                                val heroService: AsyncHeroService,
-                                val mcc: MessagesControllerComponents, view: create, textInputView: text_input)
+@Singleton class HeroController @Inject() (
+                                val mcc: MessagesControllerComponents,
+                                view: heroes,
+                                heroService: AsyncHeroService)
                                (implicit val executionContext: ExecutionContext) extends FrontendController(mcc)
   with I18nSupport {
+
+  case class HeroData(name: String, img: String, power: Int, intellect: Int, speed: Int, charisma: Int) // change to HeroData
   case class Data(val field: String) {}
 
   val form: Form[Data] = Form[Data](
@@ -54,32 +60,28 @@ class HeroController @Inject() (
     (HeroData.unapply)
   )
 
-  def index() = Action { implicit request =>
-    Ok(view("Create Superhero", "Heading", "SomeText"))
+  def index(mode: Mode) = Action { implicit request =>
+    Ok(view(heroForm, mode))
   }
 
-  def textInput() = Action { implicit req =>
-    Ok(textInputView("", "", ""))
+ // def textInput() = Action { implicit req =>
+   // Ok(textInputView("", "", ""))
+  //}
+
+
+  def init(mode: Mode): Action[AnyContent] = Action { implicit request =>
+    Ok(view(heroForm, mode))
   }
 
-
-
-
-
-
-  def init(): Action[AnyContent] = Action { implicit request =>
-    Ok(view("Create Superhero", "Heading", "SomeText"))
-  }
-
-  def create() = Action {
-    implicit request =>
+  def create(mode: Mode) = Action { implicit request =>
       heroForm.bindFromRequest().fold(
         formWithErrors => {
           println("Nay!" + formWithErrors)
-          BadRequest(view("Create Superhero", "Heading", "SomeText"))
+          BadRequest(view(formWithErrors, mode))
+
         },
         heroData => {
-          val id = MurmurHash3.stringHash(heroData.name)
+         // val id = MurmurHash3.stringHash(heroData.name)
           val newUser = models.Hero(
            // id,
             heroData.name,

@@ -5,6 +5,8 @@
 
 package controllers
 
+import models.Mode
+
 import play.api.data.Form
 import play.api.data.Forms.{mapping, text}
 
@@ -28,8 +30,8 @@ import scala.concurrent.{ExecutionContext, Future}
     mapping("field" -> text)(Data.apply)(Data.unapply)
   )
 
-  def index() = Action { implicit request =>
-    Ok(view("Create Superhero", "Heading", "SomeText"))
+  def index(mode: Mode) = Action { implicit request =>
+    Ok(view("","",""))
   }
 
   def textInput() = Action {implicit req =>
