@@ -151,12 +151,14 @@ justify-content: space-between;
   font-size: 2em;
 }
 
-.card__slogon {
+.card__slogan {
     margin-top: 5px;
     margin-bottom: 25px;
     font-size: 1.2em;
     padding: 5px;
     border: #eb196e solid 1px;
+    text-align: center;
+
 }
 
 .card__image {
@@ -341,134 +343,34 @@ justify-content: space-between;
         <!-- Slideshow container -->
         <div class="slideshow-container">
             <!-- Full-width images with number and caption text -->
-
+            @for(hero <-heroes) {
             <div class="mySlides fade">
                 <div class="card-container">
+
                     <div class="card">
-                        <img src="https://purenintendo.com/wp-content/uploads/2010/06/hidden01.jpg" alt="Person" class="card__image">
-                        <p class="card__name">Ness</p>
-                        <div class="card__slogon_container">
-                            <p class="card__slogon"> "I Can Do This All Day." </p>
+                        <img src="@hero.img" alt="@hero.name" class="card__image">
+                        <p class="card__name">@hero.name</p>
+                        <div class="card__slogan_container">
+                            <p class="card__slogan">@hero.slogan</p>
                         </div>
-
-                        <ul class="social-icons grid-container">
-
-
-                            @for(hero <-heroes) {
-                                <p>Strength</p>
-                                <li><a href="#"><i>@hero.name </i></a></li>
-                                <p>Intellect</p>
-                                <li><a href="#"><i>@hero.intellect</i></a></li>
-                                <p>Speed</p>
-                                <li><a href="#"><i>@hero.speed</i></a></li>
-                                <p>Charisma</p>
-                                <li><a href="#"><i>@hero.charisma</i></a></li>
-                            }
-                        </ul>
-
-
-
-                        <button class="btn draw-border">Select for battle</button>
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="mySlides fade">
-                <div class="card-container">
-                    <div class="card">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_NCp8q_uCPRrL4e8t_82dMYAxJhHmocuWCg&usqp=CAU" alt="Person" class="card__image">
-                        <p class="card__name">Ste</p>
-                        <div class="card__slogon_container">
-                            <p class="card__slogon">"I Can Do This All Day."</p>
-                        </div>
-
                         <ul class="social-icons grid-container">
                             <p>Strength</p>
-                            <li><a href="#"><i>46</i></a></li>
+                            <li><a><i>@hero.power</i></a></li>
                             <p>Intellect</p>
-                            <li><a href="#"><i>78</i></a></li>
+                            <li><a><i>@hero.intellect</i></a></li>
                             <p>Speed</p>
-                            <li><a href="#"><i>89</i></a></li>
+                            <li><a><i>@hero.speed</i></a></li>
                             <p>Charisma</p>
-                            <li><a href="#"><i>43</i></a></li>
+                            <li><a><i>@hero.charisma</i></a></li>
                         </ul>
                         <a href="/battle" class="btn draw-border">Select for battle</a>
                     </div>
+
                 </div>
             </div>
+            }
 
-            <div class="mySlides fade">
-                <div class="card-container">
-                    <div class="card">
-                        <img src="https://uploads.dailydot.com/2018/05/superheroes_for_kids_spider_man.jpg?auto=compress&fm=pjpg" alt="Person" class="card__image">
-                        <p class="card__name">Romel</p>
-                        <div class="card__slogon_container">
-                            <p class="card__slogon">"Truth, Justice..."</p>
-                        </div>
 
-                        <ul class="social-icons grid-container">
-                            <p>Strength</p>
-                            <li><a href="#"><i>56</i></a></li>
-                            <p>Intellect</p>
-                            <li><a href="#"><i>65</i></a></li>
-                            <p>Speed</p>
-                            <li><a href="#"><i>75</i></a></li>
-                            <p>Charisma</p>
-                            <li><a href="#"><i>23</i></a></li>
-                        </ul>
-                        <a href="/battle" class="btn draw-border">Select for battle</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="mySlides fade">
-                <div class="card-container">
-                    <div class="card">
-                        <img src="https://www.biowars.com/blog/wp-content/uploads/2022/01/masked-superheroes-wolverine.jpg" alt="Person" class="card__image">
-                        <p class="card__name">Gary</p>
-                        <div class="card__slogon_container">
-                            <p class="card__slogon">"Spoon!"</p>
-                        </div>
-
-                        <ul class="social-icons grid-container">
-                            <p>Strength</p>
-                            <li><a href="#"><i>64</i></a></li>
-                            <p>Intellect</p>
-                            <li><a href="#"><i>45</i></a></li>
-                            <p>Speed</p>
-                            <li><a href="#"><i>68</i></a></li>
-                            <p>Charisma</p>
-                            <li><a href="#"><i>10</i></a></li>
-                        </ul>
-                        <a href="/battle" class="btn draw-border">Select for battle</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="mySlides fade">
-                <div class="card-container">
-                    <div class="card">
-                        <img src="https://britmovietours.com/wp-content/uploads/PowBatman.jpg" alt="Person" class="card__image">
-                        <p class="card__name">Jacques</p>
-                        <div class="card__slogon_container">
-                            <p class="card__slogon">"Sweet Christmas!"</p>
-                        </div>
-
-                        <ul class="social-icons grid-container">
-                            <p>Strength</p>
-                            <li><a href="#"><i>77</i></a></li>
-                            <p>Intellect</p>
-                            <li><a href="#"><i>55</i></a></li>
-                            <p>Speed</p>
-                            <li><a href="#"><i>66</i></a></li>
-                            <p>Charisma</p>
-                            <li><a href="#"><i>44</i></a></li>
-                        </ul>
-                        <a href="/battle" class="btn draw-border">Select for battle</a>
-                    </div>
-                </div>
-            </div>
 
             <!-- Next and previous buttons -->
             <a class="prev" onclick="plusSlides(-1)">&#10094;</a>

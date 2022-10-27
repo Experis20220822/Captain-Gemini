@@ -6,10 +6,11 @@
 package services
 
 import models.Hero
-
 import org.mongodb.scala.connection.ClusterSettings
 import org.mongodb.scala.model.Filters.equal
 import org.mongodb.scala.{Document, MongoClient, MongoClientSettings, MongoCredential, MongoDatabase, ServerAddress}
+import play.api.data.Forms.text
+import play.api.data.validation.Constraints.nonEmpty
 
 import javax.inject.Inject
 import scala.concurrent.Future
@@ -23,6 +24,7 @@ class MongoHeroService @Inject()(myCompanyDatabase: MongoDatabase) extends Async
     Document(
       "id" -> hero.id,
       "name" -> hero.name,
+      "slogan" -> hero.slogan,
       "img" -> hero.img,
       "power" -> hero.power,
       "intellect" -> hero.intellect,
@@ -46,6 +48,7 @@ class MongoHeroService @Inject()(myCompanyDatabase: MongoDatabase) extends Async
     Hero(
       d.getLong("id"),
       d.getString("name"),
+      d.getString("slogan"),
       d.getString("img"),
       d.getInteger("power"),
       d.getInteger("intellect"),
