@@ -22,13 +22,6 @@ class Module extends AbstractModule {
       val mongoClient: MongoClient = MongoClient(
         fullURI
       )
-      println(password)
-      println(username)
-      println(database)
-      println(url)
-      println(port)
-      println(fullURI)
-
       mongoClient.getDatabase(database)
     }
 
