@@ -6,8 +6,12 @@
 # An example controller showing a sample home page
 GET     /                           controllers.HomeController.index()
 GET     /create                     controllers.CreateController.index(mode: Mode = NormalMode)
+
 GET     /create-hero                controllers.HeroController.index(mode: Mode = NormalMode)
+POST    /account-created            controllers.HeroController.create(mode: Mode = NormalMode)
 GET     /viewsuperheros             controllers.ViewSuperherosController.index()
+
+GET     /create-hero/:id                controllers.HeroController.show(id:Long)
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)

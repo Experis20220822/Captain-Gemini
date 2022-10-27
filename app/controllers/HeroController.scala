@@ -6,39 +6,34 @@
 package controllers
 
 //import views.html.create
-import views.html._
-
-import services.AsyncHeroService
-
 import models.Mode
-
-import javax.inject._
-import scala.concurrent.ExecutionContext.Implicits.global // This global ACTION gets view
-import scala.util.hashing.MurmurHash3
-
 import play.api.data.Form
 import play.api.data.Forms.{mapping, number, text}
 import play.api.data.validation.Constraints.{max, min, nonEmpty}
 import play.api.i18n.I18nSupport
+import services.AsyncHeroService
+
+import javax.inject._
+import scala.concurrent.ExecutionContext.Implicits.global
+import scala.util.hashing.MurmurHash3
 //import play.api.mvc.{Action, AnyContent, BaseController, ControllerComponents, MessagesControllerComponents}
-import play.api.mvc.{Action, AnyContent, MessagesControllerComponents, MessagesRequest, Request}
+import play.api.mvc.{Action, AnyContent, MessagesControllerComponents}
 //import play.api.mvc._
 
-import play.filters.csrf.CSRF
 import uk.gov.hmrc.play.bootstrap.frontend.controller.FrontendController
+import views.html.ListSuperHeroesLayout
 import views.html.createHero.heroes
-import views.html.text_input
 
-import scala.concurrent.{ExecutionContext, Future}
-import scala.util.Success
+//import scala.concurrent.{ExecutionContext, Future}
 
 
 
 @Singleton class HeroController @Inject() (
-                                val mcc: MessagesControllerComponents,
-                                view: heroes,
-                                heroService: AsyncHeroService)
-                               (implicit val executionContext: ExecutionContext) extends FrontendController(mcc)
+                                            val mcc: MessagesControllerComponents,
+                                            createView: heroes,
+                                            listView: ListSuperHeroesLayout,
+                                            heroService: AsyncHeroService)
+                                extends FrontendController(mcc)
   with I18nSupport {
 
   case class HeroData(name: String, img: String, power: Int, intellect: Int, speed: Int, charisma: Int) // change to HeroData
@@ -60,8 +55,12 @@ import scala.util.Success
     (HeroData.unapply)
   )
 
+  def list() = Action.async { implicit request =>
+    heroService.findAll().map(xs => Ok(listView("View all heroes","Heroes Page","Select a hero", xs)))
+  }
+
   def index(mode: Mode) = Action { implicit request =>
-    Ok(view(heroForm, mode))
+    Ok(createView(heroForm, mode))
   }
 
  // def textInput() = Action { implicit req =>
@@ -70,20 +69,20 @@ import scala.util.Success
 
 
   def init(mode: Mode): Action[AnyContent] = Action { implicit request =>
-    Ok(view(heroForm, mode))
+    Ok(createView(heroForm, mode))
   }
 
   def create(mode: Mode) = Action { implicit request =>
       heroForm.bindFromRequest().fold(
         formWithErrors => {
           println("Nay!" + formWithErrors)
-          BadRequest(view(formWithErrors, mode))
+          BadRequest(createView(formWithErrors, mode))
 
         },
         heroData => {
-         // val id = MurmurHash3.stringHash(heroData.name)
+          val id = MurmurHash3.stringHash(heroData.name)
           val newUser = models.Hero(
-           // id,
+            id,
             heroData.name,
             heroData.img,
             heroData.power,
@@ -98,14 +97,14 @@ import scala.util.Success
       )
   }
 
-/*  def show(id: Long): Action[AnyContent] = Action.async { implicit request =>
+  def show(id: Long): Action[AnyContent] = Action.async { implicit request =>
     val maybeHero = heroService.findById(id)
     maybeHero
       .map {
-        case Some(stadium) => Ok(views.html.stadium.show(stadium))// needs to point to a show page which will be created soon
+        case Some(hero) => Ok(views.html.createHero.show(hero))// needs to point to a show page which will be created soon
         case None => NotFound("Sorry, that HERO no existo")
       }
-  }*/
+  }
 
 
 }

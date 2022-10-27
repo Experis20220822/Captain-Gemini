@@ -1,0 +1,22 @@
+@*
+ * Copyright 2022 HM Revenue & Customs
+ *
+ *@
+
+@import models.Hero
+@import views.html.ListSuperHeroes
+
+@this(layout: Layout, listSuperHeroPage: ListSuperHeroes)
+
+
+
+@(pageTitle: String, heading: String, message: String, heroes: List[Hero])(implicit request: Request[_], messages: Messages)
+
+
+
+
+@layout(pageTitle = pageTitle, isWelshTranslationAvailable = true) {
+
+ @listSuperHeroPage.render(heroes)
+
+}

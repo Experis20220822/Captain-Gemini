@@ -5,7 +5,14 @@
 
 @import uk.gov.hmrc.govukfrontend.views.Aliases.Button
 
+@import models.Hero
+
+
+
 @this(govukSelect: GovukSelect, govukButton: GovukButton, govukFieldset: GovukFieldset, govukInput: GovukInput)
+
+
+@(heroes: List[Hero])
 
 <style>
 .sup-nav {
@@ -354,6 +361,38 @@ justify-content: space-between;
                 </div>
                 <div class="text">Caption Text</div>
             </div>
+
+            <div class="mySlides fade">
+                <div class="card-container">
+                    <div class="card">
+                        <img src="https://purenintendo.com/wp-content/uploads/2010/06/hidden01.jpg" alt="Person" class="card__image">
+                        <p class="card__name">Ness</p>
+                        <div class="card__slogon_container">
+                            <p class="card__slogon"> "I Can Do This All Day." </p>
+                        </div>
+
+                        <ul class="social-icons grid-container">
+
+
+                            @for(hero <-heroes) {
+                                <p>Strength</p>
+                                <li><a href="#"><i>@hero.name </i></a></li>
+                                <p>Intellect</p>
+                                <li><a href="#"><i>@hero.intellect</i></a></li>
+                                <p>Speed</p>
+                                <li><a href="#"><i>@hero.speed</i></a></li>
+                                <p>Charisma</p>
+                                <li><a href="#"><i>@hero.charisma</i></a></li>
+                            }
+                        </ul>
+
+
+
+                        <button class="btn draw-border">Select for battle</button>
+                    </div>
+                </div>
+            </div>
+
 
             <div class="mySlides fade">
                 <div class="card-container">

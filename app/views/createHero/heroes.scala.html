@@ -21,7 +21,7 @@
 
     @govukBackLink(BackLink(href = routes.HomeController.index().url))
 
-    @formHelper(action = routes.CreateController.index(), 'autoComplete -> "off") {
+    @formHelper(action = routes.HeroController.create(), 'autoComplete -> "off") {
 
         @if(form.errors.nonEmpty) {
             @govukErrorSummary(ErrorSummaryViewModel(form))
@@ -70,13 +70,12 @@
                 </div>
 
         @govukInput(Input(
-            id = "superhero name",
-            name = "superhero name",
+            id = "name",
+            name = "name",
             label = Label(content = Text("Superhero name")),
-            value = form("superhero name").value,
-            errorMessage = form("superhero name").error.map(err => ErrorMessage(content = Text(messages(err.message, err.args: _*)))),
-            classes = "govuk-!-width-one-half",
-            hint = Some(Hint(content = Text("We’ll only use this to send you a receipt"))),
+            value = form("name").value,
+            errorMessage = form("name").error.map(err => ErrorMessage(content = Text(messages(err.message, err.args: _*)))),
+
         ))
 
         <div class="govuk-form-group">
@@ -88,12 +87,21 @@
         </div>
 
         @govukInput(Input(
+            id = "img",
+            name = "img",
+            label = Label(content = Text(messages("img"))),
+            value = form("img").value,
+            errorMessage = form("img").error.map(err => ErrorMessage(content = Text(messages(err.message, err.args: _*)))),
+
+        ))
+
+        @govukInput(Input(
             id = "power",
             name = "power",
             label = Label(content = Text(messages("Power"))),
             value = form("power").value,
             errorMessage = form("power").error.map(err => ErrorMessage(content = Text(messages(err.message, err.args: _*)))),
-            classes = "govuk-!-width-one-half"
+
         ))
 
 
@@ -103,18 +111,16 @@
             label = Label(content = Text(messages("Intellect"))),
             value = form("intellect").value,
             errorMessage = form("intellect").error.map(err => ErrorMessage(content = Text(messages(err.message, err.args: _*)))),
-            classes = "govuk-!-width-one-half",
-            inputType = "password"
+
         ))
 
         @govukInput(Input(
-            id = "password",
-            name = "password",
-            label = Label(content = Text(messages("Password"))),
-            value = form("password").value,
-            errorMessage = form("password").error.map(err => ErrorMessage(content = Text(messages(err.message, err.args: _*)))),
-            classes = "govuk-!-width-one-half",
-            inputType = "password"
+            id = "charisma",
+            name = "charisma",
+            label = Label(content = Text(messages("charisma"))),
+            value = form("charisma").value,
+            errorMessage = form("charisma").error.map(err => ErrorMessage(content = Text(messages(err.message, err.args: _*)))),
+
         ))
 
 
@@ -124,24 +130,15 @@
             label = Label(content = Text(messages("Speed"))),
             value = form("speed").value,
             errorMessage = form("speed").error.map(err => ErrorMessage(content = Text(messages(err.message, err.args: _*)))),
-            classes = "govuk-!-width-one-half",
-            inputType = "password"
+
         ))
 
 
-        @govukInput(Input(
-            id = "password",
-            name = "password",
-            label = Label(content = Text(messages("Password"))),
-            value = form("password").value,
-            errorMessage = form("password").error.map(err => ErrorMessage(content = Text(messages(err.message, err.args: _*)))),
-            classes = "govuk-!-width-one-half",
-            inputType = "password"
-        ))
+
 
 
         @govukButton(
-            ButtonViewModel(messages("site.continue"))
+            ButtonViewModel(messages("continue"))
         )
     }
 }

@@ -21,6 +21,7 @@ class MongoHeroService @Inject()(myCompanyDatabase: MongoDatabase) extends Async
 
   private def heroToDocument(hero: Hero) = {
     Document(
+      "id" -> hero.id,
       "name" -> hero.name,
       "img" -> hero.img,
       "power" -> hero.power,
@@ -43,6 +44,7 @@ class MongoHeroService @Inject()(myCompanyDatabase: MongoDatabase) extends Async
 
   private def documentToHero(d: Document) = {
     Hero(
+      d.getLong("id"),
       d.getString("name"),
       d.getString("img"),
       d.getInteger("power"),
