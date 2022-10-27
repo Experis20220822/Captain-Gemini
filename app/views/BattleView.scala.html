@@ -284,14 +284,14 @@ display: none;
                                 <p class="card__slogan"></p>
                             </div>
                             <ul class="social-icons grid-container">
-                                <p>Strength</p>
-                                <li><a><i></i></a></li>
-                                <p>Intellect</p>
-                                <li><a><i></i></a></li>
-                                <p>Speed</p>
-                                <li><a><i></i></a></li>
-                                <p>Charisma</p>
-                                <li><a><i></i></a></li>
+                                <p id="strength">Strength</p>
+                                <li id="strength-score"><a><i onclick="selectAttrStrength()">64</i></a></li>
+                                <p id="intellect">Intellect</p>
+                                <li id="intellect-score"><a><i onclick="selectAttrIntellect()">45</i></a></li>
+                                <p id="speed">Speed</p>
+                                <li id="speed-score"><a><i onclick="selectAttrSpeed()">68</i></a></li>
+                                <p id="charisma"> Charisma</p>
+                                <li id="charisma-score"><a><i onclick="selectAttrCharisma()">10</i></a></li>
                             </ul>
                             <a id="btn-selectForFight" onclick="selectForFight()" class="btn draw-border">Select for battle</a>
                             <a id="btn-fight" class="btn draw-border">Fight!</a>

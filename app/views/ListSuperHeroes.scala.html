@@ -20,7 +20,6 @@ justify-content: space-between;
 }
 .sup-nav ul li a:hover{
     color: #fff;
-    cursor: crosshair;
 }
 <!--Navbar Ends Here###-->
 
@@ -377,7 +376,7 @@ display: none;
                 <a href="/">Home</a>
             </li>
             <li class="hmrc-language-select__list-item">
-                <a href="/create">Create Superheroes</a>
+                <a href="/create-hero">Create Superheroes</a>
             </li>
         </ul>
     </nav>
@@ -412,33 +411,34 @@ display: none;
                                         <p class="card__slogan">@hero.slogan</p>
                                     </div>
                                     <ul class="social-icons grid-container">
-                                        <p>Strength</p>
-                                        <li><a><i>@hero.power</i></a></li>
-                                        <p>Intellect</p>
-                                        <li><a><i>@hero.intellect</i></a></li>
-                                        <p>Speed</p>
-                                        <li><a><i>@hero.speed</i></a></li>
-                                        <p>Charisma</p>
-                                        <li><a><i>@hero.charisma</i></a></li>
+                                        <p id="strength">Strength</p>
+                                        <li id="strength-score"><a><i onclick="selectAttrStrength()">@hero.power</i></a></li>
+                                        <p id="intellect">Intellect</p>
+                                        <li id="intellect-score"><a><i onclick="selectAttrIntellect()">@hero.intellect</i></a></li>
+                                        <p id="speed">Speed</p>
+                                        <li id="speed-score"><a><i onclick="selectAttrSpeed()">@hero.speed</i></a></li>
+                                        <p id="charisma"> Charisma</p>
+                                        <li id="charisma-score"><a><i onclick="selectAttrCharisma()">@hero.charisma</i></a></li>
                                     </ul>
+
                                     <a id="btn-selectForFight" onclick="selectForFight()" class="btn draw-border">Select for
                                         battle</a>
+                                    <a id="btn-message" class="btn draw-border" style="display:none">Pick an attribute from above</a>
+
+
                                     <a id="btn-fight" class="btn draw-border">Fight!</a>
+                                    <button id="btn-reset" onclick="resetAttr()" class="btn draw-border" >Pick a different attribute</button>
+
                                     <a id="btn-selectNewHero" onclick="selectNewHero()" class="btn draw-border">Select a
                                         different hero!</a>
                                 </div>
                             </div>
-
                         </div>
                         }
                         <!-- Next and previous buttons -->
                         <a id="prev" class="prev" onclick="plusSlides(-1)">&#10094;</a>
                         <a id="next" class="next" onclick="plusSlides(1)">&#10095;</a>
                     </div></div>
-
-
-
-
 
                 <div>
                     <div style="display:none" id="battle-card-1">
@@ -450,10 +450,6 @@ display: none;
                 </div>
                 </div>
 
-
-
-
-
                 <div>  @for(hero <-heroes) {
                     <div style="display:none" id="battle-card-2">
                         <div class="card-container">
@@ -461,8 +457,8 @@ display: none;
                                 <img src="@hero.img" alt="@hero.name" class="card__image">
 
                                 <p class="card__name">@hero.name</p>
-                                <div class="card__slogon_container">
-                                    <p class="card__slogon">@hero.slogan</p>
+                                <div class="card__slogan_container">
+                                    <p class="card__slogan">@hero.slogan</p>
                                 </div>
 
                                 <ul class="social-icons grid-container">
@@ -472,55 +468,69 @@ display: none;
                                     <li id="otherIntellect-score"><a><i onclick="selectAttrIntellect()">X</i></a></li>
                                     <p id="otherSpeed">Speed</p>
                                     <li id="otherSpeed-score"><a><i onclick="selectAttrSpeed()">X</i></a></li>
-                                    <p id="otherCharisma"> Charisma</p>
+                                    <p id="otherCharisma">Charisma</p>
                                     <li id="otherCharisma-score"><a><i onclick="selectAttrCharisma()">X</i></a></li>
                                 </ul>
-                                <button id="other-btn-message" class="btn draw-border">Bring it on!</button>
-                                <button id="other-btn-fight" onclick="fight()" class="btn draw-border">Fight!</button>
+
+                                <a id="other-btn-selectForFight" onclick="selectForFight()" class="btn draw-border">Select for
+                                    battle</a>
+                                <a id="other-btn-message" class="btn draw-border" style="display:none">Pick an attribute from above</a>
+
+
+                                <a id="other-btn-fight" class="btn draw-border">Fight!</a>
+                                <button id="other-btn-reset" onclick="resetAttr()" class="btn draw-border" >Pick a different attribute</button>
+
                                 <a id="other-btn-selectNewHero" onclick="selectNewHero()" class="btn draw-border">Select a
                                     different hero!</a>
-                                <button id="other-btn-reset" onclick="resetAttr()" class="btn draw-border">Reset</button>
+
+
                                 <button id="other-btn-win" onclick="resetAttr()" class="btn draw-border">WINNER!</button>
                                 <button id="other-btn-lose" onclick="resetAttr()" class="btn draw-border">LOSER!</button>
                             </div>
                         </div>
                     </div>
-                    }</div>
-
+                    }
+                </div>
             </div>
-
-
-
-
-
-
-
-
-
-
         </div>
-
-
     </main>
 </div>
 
 <script>
 function selectForFight(){
+
+document.getElementById("btn-selectNewHero").style.display = "block";
 document.getElementById("btn-selectForFight").style.display = "none";
 document.getElementById("btn-fight").style.display = "none";
-document.getElementById("btn-selectNewHero").style.display = "block";
-document.getElementById("battle-card-1").style.display = "block";
-document.getElementById("battle-card-2").style.display = "block";
-document.getElementById("other-btn-message").style.display = "none";
+document.getElementById("btn-message").style.display = "block";
+document.getElementById("other-btn-message").style.display = "block";
+
+document.getElementById("other-btn-selectForFight").style.display = "none";
 
 document.getElementById("prev").style.display = "none";
 document.getElementById("next").style.display = "none";
+
+document.getElementById("battle-card-1").style.display = "block";
+document.getElementById("battle-card-2").style.display = "block";
 }
 
 function selectNewHero(){
 document.getElementById("btn-selectForFight").style.display = "block";
 document.getElementById("btn-fight").style.display = "none";
 document.getElementById("btn-selectNewHero").style.display = "none";
+document.getElementById("btn-message").style.display = "none";
+document.getElementById("strength").style.display = "block";
+document.getElementById("strength-score").style.display = "block";
+document.getElementById("intellect").style.display = "block";
+document.getElementById("intellect-score").style.display = "block";
+document.getElementById("speed").style.display = "block";
+document.getElementById("speed-score").style.display = "block";
+document.getElementById("charisma").style.display = "block";
+document.getElementById("charisma-score").style.display = "block";
+document.getElementById("btn-reset").style.display = "none";
+
+
+document.getElementById("btn-message").style.display = "none";
 
 document.getElementById("battle-card-1").style.display = "none";
 document.getElementById("battle-card-2").style.display = "none";
@@ -532,6 +542,11 @@ document.getElementById("next").style.display = "block";
 
 function selectAttrStrength() {
 
+  document.getElementById("btn-fight").style.display = "block";
+  document.getElementById("btn-reset").style.display = "block";
+
+  document.getElementById("btn-selectNewHero").style.display = "block";
+
   document.getElementById("intellect").style.display = "none";
   document.getElementById("intellect-score").style.display = "none";
   document.getElementById("otherSpeed").style.display = "none";
@@ -550,10 +565,22 @@ function selectAttrStrength() {
   document.getElementById("other-btn-message").style.display = "none";
   document.getElementById("btn-fight").style.display = "block";
   document.getElementById("other-btn-fight").style.display = "block";
+
+
   document.getElementById("other-btn-fight").style.display = "block";
-  document.getElementById("btn-reset").style.display = "block";
   document.getElementById("other-btn-reset").style.display = "block";
+
   document.getElementById("other-btn-message").style.display = "none";
+  document.getElementById("btn-selectForFight").style.display = "none";
+  document.getElementById("other-btn-selectNewHero").style.display = "none";
+  document.getElementById("other-btn-selectForFight").style.display = "none";
+
+
+document.getElementById("prev").style.display = "none";
+document.getElementById("next").style.display = "none";
+
+document.getElementById("battle-card-1").style.display = "block";
+document.getElementById("battle-card-2").style.display = "block";
 }
 
 function selectAttrIntellect() {
@@ -564,6 +591,8 @@ function selectAttrIntellect() {
   document.getElementById("charisma").style.display = "none";
   document.getElementById("charisma-score").style.display = "none";
 
+  document.getElementById("btn-selectNewHero").style.display = "block";
+
   document.getElementById("otherStrength").style.display = "none";
   document.getElementById("otherStrength-score").style.display = "none";
   document.getElementById("otherSpeed").style.display = "none";
@@ -577,6 +606,13 @@ function selectAttrIntellect() {
   document.getElementById("other-btn-reset").style.display = "block";
   document.getElementById("other-btn-message").style.display = "none";
   document.getElementById("other-btn-fight").style.display = "block";
+
+
+  document.getElementById("prev").style.display = "none";
+document.getElementById("next").style.display = "none";
+
+document.getElementById("battle-card-1").style.display = "block";
+document.getElementById("battle-card-2").style.display = "block";
 }
 
 function selectAttrSpeed() {
@@ -587,6 +623,8 @@ function selectAttrSpeed() {
   document.getElementById("charisma").style.display = "none";
   document.getElementById("charisma-score").style.display = "none";
 
+  document.getElementById("btn-selectNewHero").style.display = "block";
+
   document.getElementById("otherStrength").style.display = "none";
   document.getElementById("otherStrength-score").style.display = "none";
   document.getElementById("otherIntellect").style.display = "none";
@@ -600,6 +638,14 @@ function selectAttrSpeed() {
   document.getElementById("other-btn-reset").style.display = "block";
   document.getElementById("other-btn-message").style.display = "none";
   document.getElementById("other-btn-fight").style.display = "block";
+
+
+
+  document.getElementById("prev").style.display = "none";
+document.getElementById("next").style.display = "none";
+
+document.getElementById("battle-card-1").style.display = "block";
+document.getElementById("battle-card-2").style.display = "block";
 }
 
 function selectAttrCharisma() {
@@ -609,6 +655,8 @@ function selectAttrCharisma() {
   document.getElementById("intellect-score").style.display = "none";
   document.getElementById("speed").style.display = "none";
   document.getElementById("speed-score").style.display = "none";
+
+  document.getElementById("btn-selectNewHero").style.display = "blck";
 
   document.getElementById("otherStrength").style.display = "none";
   document.getElementById("otherStrength-score").style.display = "none";
@@ -623,9 +671,18 @@ function selectAttrCharisma() {
   document.getElementById("other-btn-reset").style.display = "block";
   document.getElementById("other-btn-message").style.display = "none";
   document.getElementById("other-btn-fight").style.display = "block";
+
+
+  document.getElementById("prev").style.display = "none";
+document.getElementById("next").style.display = "none";
+
+document.getElementById("battle-card-1").style.display = "block";
+document.getElementById("battle-card-2").style.display = "block";
 }
 
 function resetAttr(){
+  document.getElementById("btn-selectNewHero").style.display = "block";
+
   document.getElementById("strength").style.display = "block";
   document.getElementById("strength-score").style.display = "block";
   document.getElementById("intellect").style.display = "block";
