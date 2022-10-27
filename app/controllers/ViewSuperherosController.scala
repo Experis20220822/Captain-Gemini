@@ -9,15 +9,15 @@ import play.api.data.Form
 import play.api.data.Forms.{mapping, text}
 import play.api.i18n.I18nSupport
 import play.api.mvc.MessagesControllerComponents
+import services.AsyncHeroService
 import uk.gov.hmrc.play.bootstrap.frontend.controller.FrontendController
-import views.html.{index, text_input}
-import views.html.viewsuperheros
+import views.html.{ListSuperHeroes, ListSuperHeroesLayout, text_input}
 
 import javax.inject.{Inject, Singleton}
 import scala.concurrent.ExecutionContext
 
 
-@Singleton class ViewSuperherosController @Inject()(val mcc: MessagesControllerComponents, view: viewsuperheros, textInputView: text_input)(implicit val executionContext: ExecutionContext) extends FrontendController(mcc) with I18nSupport {
+@Singleton class ViewSuperherosController @Inject()(val mcc: MessagesControllerComponents, view: ListSuperHeroes, listView: ListSuperHeroesLayout, heroService: AsyncHeroService, textInputView: text_input)(implicit val executionContext: ExecutionContext) extends FrontendController(mcc) with I18nSupport {
 
   case class Data(val field: String) {}
 
@@ -25,8 +25,8 @@ import scala.concurrent.ExecutionContext
     mapping("field" -> text)(Data.apply)(Data.unapply)
   )
 
-  def index() = Action { implicit request =>
-    Ok(view("Superheros - Captain Gemini", "Heading", "SomeText"))
+  def index() = Action.async { implicit request =>
+    heroService.findAll().map(xs => Ok(listView("View all heroes","Heroes Page","Select a hero", xs)))
   }
 
   def textInput() = Action { implicit req =>

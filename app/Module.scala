@@ -4,14 +4,9 @@
  */
 
 import com.google.inject._
-import config.AppConfig
-import controllers.HomeController
-import views.html.index
-
-import java.lang.annotation.Target
 import org.mongodb.scala.{MongoClient, MongoDatabase}
 import play.api.Configuration
-import services.{AsyncHeroService, MongoHeroService}
+import services.{AsyncHeroService, HeroService, MemoryHeroService, MongoHeroService}
 
 
 class Module extends AbstractModule {
@@ -23,12 +18,21 @@ class Module extends AbstractModule {
       val database = configuration.get[String]("mongo.database")
       val url = configuration.get[String]("mongo.host")
       val port = configuration.get[String]("mongo.port")
+      val fullURI = s"mongodb://$username:$password@$url:$port"
       val mongoClient: MongoClient = MongoClient(
-        s"mongodb://$username:$password@$url:$port"
+        fullURI
       )
+      println(password)
+      println(username)
+      println(database)
+      println(url)
+      println(port)
+      println(fullURI)
+
       mongoClient.getDatabase(database)
     }
 
     bind(classOf[AsyncHeroService]).to(classOf[MongoHeroService])
+    bind(classOf[HeroService]).to(classOf[MemoryHeroService])
   }
 }
