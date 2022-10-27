@@ -67,17 +67,24 @@ var sloganArray = [
 "I am not who I am.", "There is more in me than anyone can see.", "Doing wonders is my recognition.", "Privileged with great superpowers and intelligence.", "Heroes are made by choice.", "A superhero that you can trust.", "We are going to make a difference.", "Anyone can be a superhero by doing good deeds.", "Superpowers come with significant responsibilities.", "Dying is not in the dictionary of superheroes.", "The man of superpowers.", "Avengers Assemble!", "Cats come when they feel like it, not when they're told.", "Flame on!", "I am the law.", "I hope justice is found here today...before justice finds you.", "I'm the best there is at what I do.", "I'm the fastest man alive.", "It's clobbering time!", "Sometimes when you cage the beast, the beast gets angry.", "The Emerald Crusader.", "Sworn to protect a world that hates and fears them.", "Here comes the A train, baby!", "Wake me when you need me...", "A wizard is never late, nor is he early. He arrives precisely when he means to.", "By Crom!", "Cowabunga!", "You have failed this city...", "Forth Eorlingas!", "Ride now, ride now! Ride to Gondor!", "Arise, arise, Riders of Theoden!", "Evil is evil. Lesser, greater, middling... Makes no difference.", "That's what I do. I drink, and I know things.", "I am a servant of the Secret Fire, wielder of the flame of Anor.", "He that breaks a thing to find out what it is has left the path of wisdom.",
 ];
 
+var imgArray = [
+"https://images.squarespace-cdn.com/content/v1/5c0f697e9d5abb8c65cd6857/1599032187414-92U41D7HVIIFVCHHBDA3/Artboard+2.png?format=1000w", "https://static.wikia.nocookie.net/my-hero-academia-fanon/images/f/f7/06.06.2013_A_True_Hero_OMS.jpg/revision/latest?cb=20180621040753", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQDE3JP0C-OJi046ljJwzKGfcfDfJuFJg7Ve2ZjV3js3Mq7iJ6CwZ0YtZTR9ASJjrIQubQ&usqp=CAU", "https://crgsoft.com/wp-content/uploads/2022/01/Characteristics-of-a-hero.jpg", "https://img.freepik.com/premium-vector/comic-superhero-silhouette_23-2147501840.jpg?1", "https://static.vecteezy.com/system/resources/thumbnails/004/842/450/small/superhero-standing-with-hands-on-hips-silhouette-free-vector.jpg", "https://static.vecteezy.com/system/resources/thumbnails/004/842/427/small/superhero-girl-standing-with-cape-waving-in-the-wind-silhouette-vector.jpg", "https://www.nicepng.com/png/detail/9-90934_silhouette-clipart-superhero-flying-superman-silhouette-png.png", "https://www.kindpng.com/picc/m/718-7184150_flying-superhero-silhouette-png-transparent-png.png", "https://www.pngkey.com/png/detail/61-615139_supergirl-silhouette-female-superhero-silhouette-png.png", "https://www.nicepng.com/png/detail/97-979330_vector-silhouettes-superhero-woman-superhero-silhouette-png.png"
+];
+
 function generateName() {
     var randomAdjective = Math.floor(Math.random()*nameAdjectiveArray.length);
     var randomNoun = Math.floor(Math.random()*nameNounArray.length);
-
     document.getElementById("name").value = nameAdjectiveArray[randomAdjective] + " " + nameNounArray[randomNoun];
 }
 
 function generateSlogan() {
     var randomSlogan = Math.floor(Math.random()*sloganArray.length);
-
     document.getElementById("slogan").value = sloganArray[randomSlogan];
+}
+
+function generateImg() {
+    var randomImg = Math.floor(Math.random()*imgArray.length);
+    document.getElementById("img").value = imgArray[randomImg];
 }
 
 </script>
@@ -114,6 +121,7 @@ function generateSlogan() {
             <button type="button" onclick="generateName()">Generate Name</button>
             <button type="button" onclick="generateSlogan()">Generate Slogan</button>
             <button type="button" onclick="generateStats()">Generate Stats</button>
+            <button type="button" onclick="generateImg()">Generate Image</button>
         </div>
 
         <br>
