@@ -10,6 +10,7 @@ GET     /create                     controllers.CreateController.index(mode: Mod
 GET     /create-hero                controllers.HeroController.index(mode: Mode = NormalMode)
 POST    /account-created            controllers.HeroController.create(mode: Mode = NormalMode)
 GET     /viewsuperheros             controllers.ViewSuperherosController.index()
+GET     /battle                     controllers.BattleController.index()
 
 GET     /create-hero/:id                controllers.HeroController.show(id:Long)
 
