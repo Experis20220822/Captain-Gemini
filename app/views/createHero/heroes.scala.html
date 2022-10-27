@@ -110,6 +110,16 @@ function generateSlogan() {
             </div>
         </div>
 
+        <div class="row">
+            <button type="button" onclick="generateName()">Generate Name</button>
+            <button type="button" onclick="generateSlogan()">Generate Slogan</button>
+            <button type="button" onclick="generateStats()">Generate Stats</button>
+        </div>
+
+        <br>
+        <br>
+
+
         @govukInput(Input(
         id = "name",
         name = "name",
@@ -118,7 +128,6 @@ function generateSlogan() {
         errorMessage = form("name").error.map(err => ErrorMessage(content = Text(messages(err.message, err.args: _*)))),
 
         ))
-        <button type="button" onclick="generateName()">Generate Name</button>
 
 
         @govukInput(Input(
@@ -130,13 +139,6 @@ function generateSlogan() {
         _*)))),
 
         ))
-        <button type="button" onclick="generateSlogan()">Generate Slogan</button>
-
-        <br>
-        <br>
-
-        <button type="button" onclick="generateStats()">Generate Stats</button>
-
 
 
         @govukInput(Input(
