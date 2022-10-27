@@ -104,6 +104,7 @@ lazy val itSettings = Defaults.itSettings ++ Seq(
 )
 
 libraryDependencies ++= AppDependencies()
+libraryDependencies += ehcache
 
 
 name := """captain-gemini"""
