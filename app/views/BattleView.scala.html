@@ -5,11 +5,10 @@
 
 @import uk.gov.hmrc.govukfrontend.views.Aliases.Button
 
-@import models.Hero
+
 
 @this(govukSelect: GovukSelect, govukButton: GovukButton, govukFieldset: GovukFieldset, govukInput: GovukInput)
 
-@(heroes: List[Hero])
 
 <style>
 .sup-nav {
@@ -27,7 +26,6 @@ justify-content: space-between;
 
 .card-container {
   display: grid;
-
   grid-gap: 50px;
   justify-content: center;
   align-items: center;
@@ -210,16 +208,16 @@ justify-content: space-between;
 
 .battle-container{
     display: grid;
-
     grid-template-columns: auto auto auto;
-
     grid-gap: 0;
     align-items: center;
 }
 
 .vs-container {
-margin: 50px;
+margin: 5px;
 }
+
+
 
 
 #btn-fight{
@@ -275,25 +273,25 @@ display: none;
 
         <div class="govuk-grid-row">
             <div class="battle-container">
-                @for(hero <-heroes) {
+
                 <div class="mySlides fade">
                     <div class="card-container">
 
                         <div class="card">
-                            <img src="@hero.img" alt="@hero.name" class="card__image">
-                            <p class="card__name">@hero.name</p>
+                            <img src="" alt="" class="card__image">
+                            <p class="card__name"></p>
                             <div class="card__slogan_container">
-                                <p class="card__slogan">@hero.slogan</p>
+                                <p class="card__slogan"></p>
                             </div>
                             <ul class="social-icons grid-container">
                                 <p>Strength</p>
-                                <li><a><i>@hero.power</i></a></li>
+                                <li><a><i></i></a></li>
                                 <p>Intellect</p>
-                                <li><a><i>@hero.intellect</i></a></li>
+                                <li><a><i></i></a></li>
                                 <p>Speed</p>
-                                <li><a><i>@hero.speed</i></a></li>
+                                <li><a><i></i></a></li>
                                 <p>Charisma</p>
-                                <li><a><i>@hero.charisma</i></a></li>
+                                <li><a><i></i></a></li>
                             </ul>
                             <a id="btn-selectForFight" onclick="selectForFight()" class="btn draw-border">Select for battle</a>
                             <a id="btn-fight" class="btn draw-border">Fight!</a>
@@ -302,7 +300,7 @@ display: none;
 
                     </div>
                 </div>
-                }
+
                 <!-- Next and previous buttons -->
                 <a id="prev" class="prev" onclick="plusSlides(-1)">&#10094;</a>
                 <a id="next" class="next" onclick="plusSlides(1)">&#10095;</a>
