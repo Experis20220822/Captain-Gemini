@@ -36,7 +36,7 @@ import views.html.createHero.heroes
                                 extends FrontendController(mcc)
   with I18nSupport {
 
-  case class HeroData(name: String, img: String, power: Int, intellect: Int, speed: Int, charisma: Int) // change to HeroData
+  case class HeroData(name: String, slogan: String, img: String, power: Int, intellect: Int, speed: Int, charisma: Int) // change to HeroData
   case class Data(val field: String) {}
 
   val form: Form[Data] = Form[Data](
@@ -47,6 +47,7 @@ import views.html.createHero.heroes
     mapping(
       "name" -> text.verifying(nonEmpty),
       "img" -> text.verifying(nonEmpty),
+      "slogan" -> text.verifying(nonEmpty),
       "power" -> number.verifying(min(0), max(100)),
       "intellect" -> number.verifying(min(0), max(100)),
       "speed" -> number.verifying(min(0), max(100)),
@@ -85,6 +86,7 @@ import views.html.createHero.heroes
             id,
             heroData.name,
             heroData.img,
+            heroData.slogan,
             heroData.power,
             heroData.intellect,
             heroData.speed,
