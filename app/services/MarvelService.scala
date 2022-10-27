@@ -14,7 +14,8 @@ import scala.concurrent.{ExecutionContext, Future}
 import scala.concurrent.duration.DurationInt
 
 
-case class MarvelService @Inject() (ws: WSClient, ec: ExecutionContext) {
+case class MarvelService @Inject() (ws: WSClient, executionContext: ExecutionContext) {
+
   // the private and public key from Marvel developer portal
   val pvtkey = "2aa4681a7a399c503018492b81d8c30e537998f5"
   val pubkey = "1698a5027fb04eabbffc7f5c5714d4af"
