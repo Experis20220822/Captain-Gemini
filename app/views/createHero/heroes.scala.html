@@ -40,6 +40,7 @@ govukHint: GovukHint,
                 }
 
 
+
 </style>
 
 <script type="text/javascript">
@@ -68,7 +69,7 @@ var sloganArray = [
 ];
 
 var imgArray = [
-"https://images.squarespace-cdn.com/content/v1/5c0f697e9d5abb8c65cd6857/1599032187414-92U41D7HVIIFVCHHBDA3/Artboard+2.png?format=1000w", "https://static.wikia.nocookie.net/my-hero-academia-fanon/images/f/f7/06.06.2013_A_True_Hero_OMS.jpg/revision/latest?cb=20180621040753", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQDE3JP0C-OJi046ljJwzKGfcfDfJuFJg7Ve2ZjV3js3Mq7iJ6CwZ0YtZTR9ASJjrIQubQ&usqp=CAU", "https://crgsoft.com/wp-content/uploads/2022/01/Characteristics-of-a-hero.jpg", "https://img.freepik.com/premium-vector/comic-superhero-silhouette_23-2147501840.jpg?1", "https://static.vecteezy.com/system/resources/thumbnails/004/842/450/small/superhero-standing-with-hands-on-hips-silhouette-free-vector.jpg", "https://static.vecteezy.com/system/resources/thumbnails/004/842/427/small/superhero-girl-standing-with-cape-waving-in-the-wind-silhouette-vector.jpg", "https://www.nicepng.com/png/detail/9-90934_silhouette-clipart-superhero-flying-superman-silhouette-png.png", "https://www.kindpng.com/picc/m/718-7184150_flying-superhero-silhouette-png-transparent-png.png", "https://www.pngkey.com/png/detail/61-615139_supergirl-silhouette-female-superhero-silhouette-png.png", "https://www.nicepng.com/png/detail/97-979330_vector-silhouettes-superhero-woman-superhero-silhouette-png.png"
+"https://images.squarespace-cdn.com/content/v1/5c0f697e9d5abb8c65cd6857/1599032187414-92U41D7HVIIFVCHHBDA3/Artboard+2.png?format=1000w", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQDE3JP0C-OJi046ljJwzKGfcfDfJuFJg7Ve2ZjV3js3Mq7iJ6CwZ0YtZTR9ASJjrIQubQ&usqp=CAU", "https://crgsoft.com/wp-content/uploads/2022/01/Characteristics-of-a-hero.jpg", "https://img.freepik.com/premium-vector/comic-superhero-silhouette_23-2147501840.jpg?1", "https://static.vecteezy.com/system/resources/thumbnails/004/842/450/small/superhero-standing-with-hands-on-hips-silhouette-free-vector.jpg", "https://static.vecteezy.com/system/resources/thumbnails/004/842/427/small/superhero-girl-standing-with-cape-waving-in-the-wind-silhouette-vector.jpg", "https://www.nicepng.com/png/detail/9-90934_silhouette-clipart-superhero-flying-superman-silhouette-png.png", "https://www.kindpng.com/picc/m/718-7184150_flying-superhero-silhouette-png-transparent-png.png", "https://www.nicepng.com/png/detail/97-979330_vector-silhouettes-superhero-woman-superhero-silhouette-png.png"
 ];
 
 function generateName() {
@@ -85,7 +86,25 @@ function generateSlogan() {
 function generateImg() {
     var randomImg = Math.floor(Math.random()*imgArray.length);
     document.getElementById("img").value = imgArray[randomImg];
+
+            var val = document.getElementById('img').value,
+            image = document.getElementById('image');
+            image.src = val;
+            document.getElementById('image').appendChild(image);
 }
+
+<!--function showImg() {-->
+<!--    var val = document.getElementById('img').value,-->
+<!--    image = document.getElementById('image');-->
+<!--    image.src = val;-->
+<!--    document.getElementById('image').appendChild(image);-->
+<!--}-->
+
+<!--const imageShow = document.getElementById("img");-->
+
+<!--imageShow.addEventListener("focus", showImg());-->
+
+<!--document.getElementById('img').onfocusout = showImg();-->
 
 </script>
 
@@ -191,6 +210,10 @@ function generateImg() {
         _*)))),
 
         ))
+
+
+        <img src="" id="image" alt="@form("name").value" class="card__image" style="width: 200px; height: 200px; margin-x: auto;>
+        <br>
 
 
         @govukInput(Input(
