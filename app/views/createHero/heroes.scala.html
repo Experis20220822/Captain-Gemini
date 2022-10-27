@@ -6,28 +6,28 @@
 @import viewmodels.InputWidth._
 
 @this(
-        layout: views.html.Layout,
-        formHelper: FormWithCSRF,
-        govukErrorSummary: GovukErrorSummary,
-        govukInput: GovukInput,
-        govukButton: GovukButton,
-        govukBackLink: GovukBackLink,
-        govukHint: GovukHint,
+layout: views.html.Layout,
+formHelper: FormWithCSRF,
+govukErrorSummary: GovukErrorSummary,
+govukInput: GovukInput,
+govukButton: GovukButton,
+govukBackLink: GovukBackLink,
+govukHint: GovukHint,
 )
 
 @(form: Form[_], mode: Mode)(implicit request: Request[_], messages: Messages)
 
 @layout(pageTitle = title(form, messages("Create")), isWelshTranslationAvailable = true) {
 
-    @govukBackLink(BackLink(href = routes.HomeController.index().url))
+@govukBackLink(BackLink(href = routes.HomeController.index().url))
 
-    @formHelper(action = routes.HeroController.create(), 'autoComplete -> "off") {
+@formHelper(action = routes.HeroController.create(), 'autoComplete -> "off") {
 
-        @if(form.errors.nonEmpty) {
-            @govukErrorSummary(ErrorSummaryViewModel(form))
-        }
+@if(form.errors.nonEmpty) {
+@govukErrorSummary(ErrorSummaryViewModel(form))
+}
 
-        <style>
+<style>
                 .sup-nav {
                     display: flex;
                     justify-content: space-between;
@@ -39,109 +39,165 @@
                     cursor: crosshair;
                 }
 
-        </style>
 
-        <div class="govuk-width-container">
+</style>
 
-            <nav class="hmrc-language-select sup-nav">
-                <ul class="hmrc-language-select__list">
-                    <li class="hmrc-language-select__list-item">
-                        <a href="/">Home</a>
-                    </li>
-                    <li class="hmrc-language-select__list-item" href="/login">
-                        <a href="viewsuperheros">View Superheroes</a>
-                    </li>
-                </ul>
-            </nav>
+<script type="text/javascript">
+
+  function generateNumber(){
+    return Math.floor(Math.random() * 100) + 1;
+  }
+
+  function generateStats() {
+    document.getElementById("power").value = generateNumber();
+    document.getElementById("intellect").value = generateNumber();
+    document.getElementById("speed").value = generateNumber();
+    document.getElementById("charisma").value = generateNumber();
+  }
+
+var nameAdjectiveArray = [
+"Adorable", "Adventurous", "Aggressive", "Agreeable", "Alert", "Alive", "Amused", "Angry", "Annoyed", "Annoying", "Anxious", "Arrogant", "Ashamed", "Attractive", "Average", "Awful", "Bad", "Beautiful", "Better", "Bewildered", "Black", "Bloody", "Blue", "Blue-eyed", "Blushing", "Bored", "Brainy", "Brave", "Breakable", "Bright", "Busy", "Calm", "Careful", "Cautious", "Charming", "Cheerful", "Clean", "Clear", "Clever", "Cloudy", "Clumsy", "Colorful", "Combative", "Comfortable", "Concerned", "Condemned", "Confused", "Cooperative", "Courageous", "Crazy", "Creepy", "Crowded", "Cruel", "Curious", "Cute", "Dangerous", "Dark", "Dead", "Defeated", "Defiant", "Delightful", "Depressed", "Determined", "Different", "Difficult", "Disgusted", "Distinct", "Disturbed", "Dizzy", "Doubtful", "Drab", "Dull", "Eager", "Easy", "Elated", "Elegant", "Embarrassed", "Enchanting", "Encouraging", "Energetic", "Enthusiastic", "Envious", "Evil", "Excited", "Expensive", "Exuberant", "Fair", "Faithful", "Famous", "Fancy", "Fantastic", "Fierce", "Filthy", "Fine", "Foolish", "Fragile", "Frail", "Frantic", "Friendly", "Frightened", "Funny", "Gentle", "Gifted", "Glamorous", "Gleaming", "Glorious", "Good", "Gorgeous", "Graceful", "Grieving", "Grotesque", "Grumpy", "Handsome", "Happy", "Healthy", "Helpful", "Helpless", "Hilarious", "Homeless", "Homely", "Horrible", "Hungry", "Hurt", "Ill", "Important", "Impossible", "Inexpensive", "Innocent", "Inquisitive", "Itchy", "Jealous", "Jittery", "Jolly", "Joyous", "Kind", "Lazy", "Light", "Lively", "Lonely", "Long", "Lovely", "Lucky", "Magnificent", "Misty", "Modern", "Motionless", "Muddy", "Mushy", "Mysterious", "Nasty", "Naughty", "Nervous", "Nice", "Nutty", "Obedient", "Obnoxious", "Odd", "Old-fashioned", "Open", "Outrageous", "Outstanding", "Panicky", "Perfect", "Plain", "Pleasant", "Poised", "Poor", "Powerful", "Precious", "Prickly", "Proud", "Putrid", "Puzzled", "Quaint", "Real", "Relieved", "Repulsive", "Rich", "Scary", "Selfish", "Shiny", "Shy", "Silly", "Sleepy", "Smiling", "Smoggy", "Sore", "Sparkling", "Splendid", "Spotless", "Stormy", "Strange", "Stupid", "Successful", "Super", "Talented", "Tame", "Tasty", "Tender", "Tense", "Terrible", "Thankful", "Thoughtful", "Thoughtless", "Tired", "Tough", "Troubled", "Ugliest", "Ugly", "Uninterested", "Unsightly", "Unusual", "Upset", "Uptight", "Vast", "Victorious", "Vivacious", "Wandering", "Weary", "Wicked", "Wide-eyed", "Wild", "Witty", "Worried", "Worrisome", "Wrong", "Zany", "Zealous"
+];
+
+var nameNounArray = [
+"Actor", "Gold", "Painting", "Advertisement", "Grass", "Parrot", "Afternoon", "Greece", "Pencil", "Airport", "Guitar", "Piano", "Ambulance", "Hair", "Pillow", "Animal", "Hamburger", "Pizza", "Answer", "Helicopter", "Planet", "Apple", "Helmet", "Plastic", "Army", "Holiday", "Portugal", "Australia", "Honey", "Potato", "Balloon", "Horse", "Queen", "Banana", "Hospital", "Quill", "Battery", "House", "Rain", "Beach", "Hydrogen", "Rainbow", "Beard", "Ice", "Raincoat", "Bed", "Insect", "Refrigerator", "Belgium", "Insurance", "Restaurant", "Boy", "Iron", "River", "Branch", "Island", "Rocket", "Breakfast", "Jackal", "Room", "Brother", "Jelly", "Rose", "Camera", "Jewellery", "Russia", "Candle", "Jordan", "Sandwich", "Car", "Juice", "School", "Caravan", "Kangaroo", "Scooter", "Carpet", "King", "Shampoo", "Cartoon", "Kitchen", "Shoe", "China", "Kite", "Soccer", "Church", "Knife", "Spoon", "Crayon", "Lamp", "Stone", "Crowd", "Lawyer", "Sugar", "Daughter", "Leather", "Sweden", "Death", "Library", "Teacher", "Denmark", "Lighter", "Telephone", "Diamond", "Lion", "Television", "Dinner", "Lizard", "Tent", "Disease", "Lock", "Thailand", "Doctor", "London", "Tomato", "Dog", "Lunch", "Toothbrush", "Dream", "Machine", "Traffic", "Dress", "Magazine", "Train", "Easter", "Magician", "Truck", "Egg", "Manchester", "Uganda", "Eggplant", "Market", "Umbrella", "Egypt", "Match", "Van", "Elephant", "Microphone", "Vase", "Energy", "Monkey", "Vegetable", "Engine", "Morning", "Vulture", "England", "Motorcycle", "Wall", "Evening", "Nail", "Whale", "Eye", "Napkin", "Window", "Family", "Needle", "Wire", "Finland", "Nest", "Xylophone", "Fish", "Nigeria", "Yacht", "Flag", "Night", "Yak", "Flower", "Notebook", "Zebra", "Football", "Ocean", "Zoo", "Forest", "Oil", "Garden", "Fountain", "Orange", "Gas", "France", "Oxygen", "Girl", "Furniture", "Oyster", "Glass", "Garage", "Ghost"
+];
+
+var sloganArray = [
+"I am not who I am.", "There is more in me than anyone can see.", "Doing wonders is my recognition.", "Privileged with great superpowers and intelligence.", "Heroes are made by choice.", "A superhero that you can trust.", "We are going to make a difference.", "Anyone can be a superhero by doing good deeds.", "Superpowers come with significant responsibilities.", "Dying is not in the dictionary of superheroes.", "The man of superpowers.", "Avengers Assemble!", "Cats come when they feel like it, not when they're told.", "Flame on!", "I am the law.", "I hope justice is found here today...before justice finds you.", "I'm the best there is at what I do.", "I'm the fastest man alive.", "It's clobbering time!", "Sometimes when you cage the beast, the beast gets angry.", "The Emerald Crusader.", "Sworn to protect a world that hates and fears them.", "Here comes the A train, baby!", "Wake me when you need me...", "A wizard is never late, nor is he early. He arrives precisely when he means to.", "By Crom!", "Cowabunga!", "You have failed this city...", "Forth Eorlingas!", "Ride now, ride now! Ride to Gondor!", "Arise, arise, Riders of Theoden!", "Evil is evil. Lesser, greater, middling... Makes no difference.", "That's what I do. I drink, and I know things.", "I am a servant of the Secret Fire, wielder of the flame of Anor.", "He that breaks a thing to find out what it is has left the path of wisdom.",
+];
+
+function generateName() {
+    var randomAdjective = Math.floor(Math.random()*nameAdjectiveArray.length);
+    var randomNoun = Math.floor(Math.random()*nameNounArray.length);
+
+    document.getElementById("name").value = nameAdjectiveArray[randomAdjective] + " " + nameNounArray[randomNoun];
+}
+
+function generateSlogan() {
+    var randomSlogan = Math.floor(Math.random()*sloganArray.length);
+
+    document.getElementById("slogan").value = sloganArray[randomSlogan];
+}
+
+</script>
+
+<div class="govuk-width-container">
+
+    <nav class="hmrc-language-select sup-nav">
+        <ul class="hmrc-language-select__list">
+            <li class="hmrc-language-select__list-item">
+                <a href="/">Home</a>
+            </li>
+            <li class="hmrc-language-select__list-item" href="/login">
+                <a href="viewsuperheros">View Superheroes</a>
+            </li>
+        </ul>
+    </nav>
 
 
-            <main class="govuk-main-wrapper">
+    <main class="govuk-main-wrapper">
 
-                <div class="govuk-grid-row">
-                    <div class="govuk-grid-column-two-thirds">
-                        <h1 class="govuk-heading-xl">Create a Superhero</h1>
-                        <div class="govuk-inset-text">
-                            “Everything you can imagine is real.”
-                            <br>
-                            <br>
-                            Now go and create a Superhero and get ready to battle!
-                        </div>
-                    </div>
+        <div class="govuk-grid-row">
+            <div class="govuk-grid-column-two-thirds">
+                <h1 class="govuk-heading-xl">Create a Superhero</h1>
+                <div class="govuk-inset-text">
+                    “Everything you can imagine is real.”
+                    <br>
+                    <br>
+                    Now go and create a Superhero and get ready to battle!
                 </div>
-
-        @govukInput(Input(
-            id = "name",
-            name = "name",
-            label = Label(content = Text("Superhero name")),
-            value = form("name").value,
-            errorMessage = form("name").error.map(err => ErrorMessage(content = Text(messages(err.message, err.args: _*)))),
-
-        ))
-
-        <div class="govuk-form-group">
-            <h1 class="govuk-label-wrapper"><label class="govuk-label govuk-label--l" for="event-name">
-                Slogan
-            </label>
-            </h1>
-            <input class="govuk-input" id="event-name" name="event-name" type="text">
+            </div>
         </div>
 
         @govukInput(Input(
-            id = "img",
-            name = "img",
-            label = Label(content = Text(messages("img"))),
-            value = form("img").value,
-            errorMessage = form("img").error.map(err => ErrorMessage(content = Text(messages(err.message, err.args: _*)))),
+        id = "name",
+        name = "name",
+        label = Label(content = Text("Superhero name")),
+        value = form("name").value,
+        errorMessage = form("name").error.map(err => ErrorMessage(content = Text(messages(err.message, err.args: _*)))),
 
         ))
-
-        @govukInput(Input(
-            id = "power",
-            name = "power",
-            label = Label(content = Text(messages("Power"))),
-            value = form("power").value,
-            errorMessage = form("power").error.map(err => ErrorMessage(content = Text(messages(err.message, err.args: _*)))),
-
-        ))
+        <button type="button" onclick="generateName()">Generate Name</button>
 
 
         @govukInput(Input(
-            id = "intellect",
-            name = "intellect",
-            label = Label(content = Text(messages("Intellect"))),
-            value = form("intellect").value,
-            errorMessage = form("intellect").error.map(err => ErrorMessage(content = Text(messages(err.message, err.args: _*)))),
+        id = "slogan",
+        name = "slogan",
+        label = Label(content = Text(messages("slogan"))),
+        value = form("slogan").value,
+        errorMessage = form("slogan").error.map(err => ErrorMessage(content = Text(messages(err.message, err.args:
+        _*)))),
 
         ))
+        <button type="button" onclick="generateSlogan()">Generate Slogan</button>
+
+        <br>
+        <br>
+
+        <button type="button" onclick="generateStats()">Generate Stats</button>
+
+
 
         @govukInput(Input(
-            id = "charisma",
-            name = "charisma",
-            label = Label(content = Text(messages("charisma"))),
-            value = form("charisma").value,
-            errorMessage = form("charisma").error.map(err => ErrorMessage(content = Text(messages(err.message, err.args: _*)))),
+        id = "power",
+        name = "power",
+        label = Label(content = Text(messages("Power"))),
+        value = form("power").value,
+        errorMessage = form("power").error.map(err => ErrorMessage(content = Text(messages(err.message, err.args:
+        _*)))),
 
         ))
 
 
         @govukInput(Input(
-            id = "speed",
-            name = "speed",
-            label = Label(content = Text(messages("Speed"))),
-            value = form("speed").value,
-            errorMessage = form("speed").error.map(err => ErrorMessage(content = Text(messages(err.message, err.args: _*)))),
+        id = "intellect",
+        name = "intellect",
+        label = Label(content = Text(messages("Intellect"))),
+        value = form("intellect").value,
+        errorMessage = form("intellect").error.map(err => ErrorMessage(content = Text(messages(err.message, err.args:
+        _*)))),
 
         ))
 
 
+        @govukInput(Input(
+        id = "speed",
+        name = "speed",
+        label = Label(content = Text(messages("Speed"))),
+        value = form("speed").value,
+        errorMessage = form("speed").error.map(err => ErrorMessage(content = Text(messages(err.message, err.args:
+        _*)))),
 
+        ))
+
+
+        @govukInput(Input(
+        id = "charisma",
+        name = "charisma",
+        label = Label(content = Text(messages("charisma"))),
+        value = form("charisma").value,
+        errorMessage = form("charisma").error.map(err => ErrorMessage(content = Text(messages(err.message, err.args:
+        _*)))),
+
+        ))
+
+
+        @govukInput(Input(
+        id = "img",
+        name = "img",
+        label = Label(content = Text(messages("img"))),
+        value = form("img").value,
+        errorMessage = form("img").error.map(err => ErrorMessage(content = Text(messages(err.message, err.args: _*)))),
+
+        ))
 
 
         @govukButton(
-            ButtonViewModel(messages("continue"))
+        ButtonViewModel(messages("continue"))
         )
-    }
-}
+        }
+        }
 
-</main>
+    </main>
 </div>
