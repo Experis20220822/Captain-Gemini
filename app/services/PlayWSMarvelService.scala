@@ -33,12 +33,12 @@ class PlayWSMarvelService @Inject()(ws: WSClient, configuration: Configuration) 
   var keyHash = MessageDigest.getInstance("MD5").digest((ts+pubkey+pvtkey).getBytes()).map("%02X".format(_)).mkString
 
   // the result is stored in a Hero
-  val futureResponse: Future[Hero] = findByCharacterStartsWith("Spider")
+  val futureResponse = findByCharacterStartsWith("Spider")
 
   override def findByCharacterStartsWith(startsWithName: String) = {
     configuration.get[String]("marvelAPI.pubkey")
     configuration.get[String]("marvelAPI.pvtkey")
-    val eventualResponse = ws
+    ws
       .url(url)
       .addQueryStringParameters(s"$ts" -> "ts", s"$keyHash" -> "hash")
       .addQueryStringParameters("nameStartsWith" -> startsWithName)
