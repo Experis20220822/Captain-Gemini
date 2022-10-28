@@ -426,11 +426,17 @@ display: none;
                                     <a id="btn-message" class="btn draw-border" style="display:none">Pick an attribute from above</a>
 
 
-                                    <a id="btn-fight" class="btn draw-border">Fight!</a>
+                                    <a id="btn-fight" onclick="fight()" class="btn draw-border">Fight!</a>
                                     <button id="btn-reset" onclick="resetAttr()" class="btn draw-border" >Pick a different attribute</button>
+
+                                    <button id="btn-win" onclick="nextFight()" class="btn draw-border" >You Win! <br> Next fight</button>
+                                    <button id="btn-lose" onclick="nextFight()" class="btn draw-border" >You Lose!</button>
+
 
                                     <a id="btn-selectNewHero" onclick="selectNewHero()" class="btn draw-border">Select a
                                         different hero!</a>
+
+
                                 </div>
                             </div>
                         </div>
@@ -454,22 +460,22 @@ display: none;
                     <div style="display:none" id="battle-card-2">
                         <div class="card-container">
                             <div class="card">
-                                <img src="@hero.img" alt="@hero.name" class="card__image">
+                                <img src="https://www.wallpaperup.com/uploads/wallpapers/2013/06/14/102891/0fb6df085d56d99fec30784ea5f4772a-700.jpg" alt="The Hulk" class="card__image">
 
-                                <p class="card__name">@hero.name</p>
+                                <p class="card__name">The Hulk</p>
                                 <div class="card__slogan_container">
-                                    <p class="card__slogan">@hero.slogan</p>
+                                    <p class="card__slogan"> "Don't make me angry. You wouldn't like me when I'm angry"</p>
                                 </div>
 
                                 <ul class="social-icons grid-container">
                                     <p id="otherStrength">Strength</p>
-                                    <li id="otherStrength-score"><a><i onclick="selectAttrStrength()">X</i></a></li>
+                                    <li id="otherStrength-score"><a><i onclick="selectAttrStrength()" id="fake-score-strength">X</i><i onclick="selectAttrStrength()" id="real-score-strength" style="display:none">2</i></a></li>
                                     <p id="otherIntellect">Intellect</p>
-                                    <li id="otherIntellect-score"><a><i onclick="selectAttrIntellect()">X</i></a></li>
+                                    <li id="otherIntellect-score"><a><i onclick="selectAttrIntellect()" id="fake-score-intellect">X</i><i onclick="selectAttrStrength()" id="real-score-intellect" style="display:none">4</i></a></li>
                                     <p id="otherSpeed">Speed</p>
-                                    <li id="otherSpeed-score"><a><i onclick="selectAttrSpeed()">X</i></a></li>
+                                    <li id="otherSpeed-score"><a><i onclick="selectAttrSpeed()" id="fake-score-speed">X</i><i onclick="selectAttrStrength()" id="real-score-speed" style="display:none">3</i></a></li>
                                     <p id="otherCharisma">Charisma</p>
-                                    <li id="otherCharisma-score"><a><i onclick="selectAttrCharisma()">X</i></a></li>
+                                    <li id="otherCharisma-score"><a><i onclick="selectAttrCharisma()" id="fake-score-charisma">X</i><i onclick="selectAttrStrength()" id="real-score-charisma" style="display:none">1</i></a></li>
                                 </ul>
 
                                 <a id="other-btn-selectForFight" onclick="selectForFight()" class="btn draw-border">Select for
@@ -484,7 +490,7 @@ display: none;
                                     different hero!</a>
 
 
-                                <button id="other-btn-win" onclick="resetAttr()" class="btn draw-border">WINNER!</button>
+                                <button id="other-btn-win" onclick="resetAttr()" class="btn draw-border">Winner!</button>
                                 <button id="other-btn-lose" onclick="resetAttr()" class="btn draw-border">LOSER!</button>
                             </div>
                         </div>
@@ -497,6 +503,83 @@ display: none;
 </div>
 
 <script>
+function fight() {
+      document.getElementById("btn-win").style.display = "block";
+      document.getElementById("other-btn-lose").style.display = "block";
+
+      document.getElementById("btn-fight").style.display = "none";
+      document.getElementById("other-btn-fight").style.display = "none";
+
+      document.getElementById("btn-reset").style.display = "none";
+      document.getElementById("other-btn-reset").style.display = "none";
+
+    document.getElementById("fake-score-strength").style.display = "none";
+    document.getElementById("fake-score-intellect").style.display = "none";
+    document.getElementById("fake-score-speed").style.display = "none";
+    document.getElementById("fake-score-charisma").style.display = "none";
+
+    document.getElementById("real-score-strength").style.display = "block";
+    document.getElementById("real-score-intellect").style.display = "block";
+    document.getElementById("real-score-speed").style.display = "block";
+    document.getElementById("real-score-charisma").style.display = "block";
+
+}
+
+function nextFight(){
+document.getElementById("btn-selectNewHero").style.display = "block";
+document.getElementById("btn-message").style.display = "block";
+document.getElementById("other-btn-message").style.display = "block";
+
+document.getElementById("btn-selectForFight").style.display = "none";
+document.getElementById("btn-fight").style.display = "none";
+
+
+document.getElementById("other-btn-selectForFight").style.display = "none";
+
+document.getElementById("prev").style.display = "none";
+document.getElementById("next").style.display = "none";
+
+document.getElementById("battle-card-1").style.display = "block";
+document.getElementById("battle-card-2").style.display = "block"
+
+document.getElementById("fake-score-strength").style.display = "block";
+document.getElementById("fake-score-intellect").style.display = "block";
+document.getElementById("fake-score-speed").style.display = "block";
+document.getElementById("fake-score-charisma").style.display = "block";
+
+document.getElementById("real-score-strength").style.display = "none";
+document.getElementById("real-score-intellect").style.display = "none";
+document.getElementById("real-score-speed").style.display = "none";
+document.getElementById("real-score-charisma").style.display = "none";
+
+document.getElementById("otherStrength").style.display = "block";
+  document.getElementById("otherStrength-score").style.display = "block";
+  document.getElementById("otherIntellect").style.display = "block";
+  document.getElementById("otherIntellect-score").style.display = "block";
+  document.getElementById("otherSpeed").style.display = "block";
+  document.getElementById("otherSpeed-score").style.display = "block";
+  document.getElementById("otherCharisma").style.display = "block";
+  document.getElementById("otherCharisma-score").style.display = "block";
+
+  document.getElementById("strength").style.display = "block";
+document.getElementById("strength-score").style.display = "block";
+document.getElementById("intellect").style.display = "block";
+document.getElementById("intellect-score").style.display = "block";
+document.getElementById("speed").style.display = "block";
+document.getElementById("speed-score").style.display = "block";
+document.getElementById("charisma").style.display = "block";
+document.getElementById("charisma-score").style.display = "block";
+
+
+document.getElementById("btn-win").style.display = "none";
+document.getElementById("btn-lose").style.display = "none";
+
+document.getElementById("other-btn-win").style.display = "none";
+document.getElementById("other-btn-lose").style.display = "none";
+
+}
+
+
 function selectForFight(){
 
 document.getElementById("btn-selectNewHero").style.display = "block";
@@ -505,7 +588,20 @@ document.getElementById("btn-fight").style.display = "none";
 document.getElementById("btn-message").style.display = "block";
 document.getElementById("other-btn-message").style.display = "block";
 
+document.getElementById("strength").style.display = "block";
+document.getElementById("strength-score").style.display = "block";
+document.getElementById("intellect").style.display = "block";
+document.getElementById("intellect-score").style.display = "block";
+document.getElementById("speed").style.display = "block";
+document.getElementById("speed-score").style.display = "block";
+document.getElementById("charisma").style.display = "block";
+document.getElementById("charisma-score").style.display = "block";
+
+
 document.getElementById("other-btn-selectForFight").style.display = "none";
+
+document.getElementById("btn-win").style.display = "none";
+document.getElementById("btn-lose").style.display = "none";
 
 document.getElementById("prev").style.display = "none";
 document.getElementById("next").style.display = "none";
@@ -527,8 +623,10 @@ document.getElementById("speed").style.display = "block";
 document.getElementById("speed-score").style.display = "block";
 document.getElementById("charisma").style.display = "block";
 document.getElementById("charisma-score").style.display = "block";
-document.getElementById("btn-reset").style.display = "none";
 
+
+document.getElementById("btn-reset").style.display = "none";
+document.getElementById("btn-win").style.display = "none";
 
 document.getElementById("btn-message").style.display = "none";
 
@@ -537,6 +635,17 @@ document.getElementById("battle-card-2").style.display = "none";
 
 document.getElementById("prev").style.display = "block";
 document.getElementById("next").style.display = "block";
+
+
+document.getElementById("fake-score-strength").style.display = "block";
+document.getElementById("fake-score-intellect").style.display = "block";
+document.getElementById("fake-score-speed").style.display = "block";
+document.getElementById("fake-score-charisma").style.display = "block";
+
+document.getElementById("real-score-strength").style.display = "none";
+document.getElementById("real-score-intellect").style.display = "none";
+document.getElementById("real-score-speed").style.display = "none";
+document.getElementById("real-score-charisma").style.display = "none";
 }
 
 
@@ -581,6 +690,16 @@ document.getElementById("next").style.display = "none";
 
 document.getElementById("battle-card-1").style.display = "block";
 document.getElementById("battle-card-2").style.display = "block";
+
+document.getElementById("fake-score-strength").style.display = "block";
+document.getElementById("fake-score-intellect").style.display = "block";
+document.getElementById("fake-score-speed").style.display = "block";
+document.getElementById("fake-score-charisma").style.display = "block";
+
+document.getElementById("real-score-strength").style.display = "none";
+document.getElementById("real-score-intellect").style.display = "none";
+document.getElementById("real-score-speed").style.display = "none";
+document.getElementById("real-score-charisma").style.display = "none";
 }
 
 function selectAttrIntellect() {
@@ -607,12 +726,29 @@ function selectAttrIntellect() {
   document.getElementById("other-btn-message").style.display = "none";
   document.getElementById("other-btn-fight").style.display = "block";
 
+  document.getElementById("other-btn-message").style.display = "none";
+  document.getElementById("btn-selectForFight").style.display = "none";
+  document.getElementById("other-btn-selectNewHero").style.display = "none";
+  document.getElementById("other-btn-selectForFight").style.display = "none";
+
 
   document.getElementById("prev").style.display = "none";
 document.getElementById("next").style.display = "none";
 
 document.getElementById("battle-card-1").style.display = "block";
 document.getElementById("battle-card-2").style.display = "block";
+
+document.getElementById("fake-score-strength").style.display = "block";
+document.getElementById("fake-score-intellect").style.display = "block";
+document.getElementById("fake-score-speed").style.display = "block";
+document.getElementById("fake-score-charisma").style.display = "block";
+
+document.getElementById("real-score-strength").style.display = "none";
+document.getElementById("real-score-intellect").style.display = "none";
+document.getElementById("real-score-speed").style.display = "none";
+document.getElementById("real-score-charisma").style.display = "none";
+
+
 }
 
 function selectAttrSpeed() {
@@ -639,6 +775,11 @@ function selectAttrSpeed() {
   document.getElementById("other-btn-message").style.display = "none";
   document.getElementById("other-btn-fight").style.display = "block";
 
+  document.getElementById("other-btn-message").style.display = "none";
+  document.getElementById("btn-selectForFight").style.display = "none";
+  document.getElementById("other-btn-selectNewHero").style.display = "none";
+  document.getElementById("other-btn-selectForFight").style.display = "none";
+
 
 
   document.getElementById("prev").style.display = "none";
@@ -646,6 +787,16 @@ document.getElementById("next").style.display = "none";
 
 document.getElementById("battle-card-1").style.display = "block";
 document.getElementById("battle-card-2").style.display = "block";
+
+document.getElementById("fake-score-strength").style.display = "block";
+document.getElementById("fake-score-intellect").style.display = "block";
+document.getElementById("fake-score-speed").style.display = "block";
+document.getElementById("fake-score-charisma").style.display = "block";
+
+document.getElementById("real-score-strength").style.display = "none";
+document.getElementById("real-score-intellect").style.display = "none";
+document.getElementById("real-score-speed").style.display = "none";
+document.getElementById("real-score-charisma").style.display = "none";
 }
 
 function selectAttrCharisma() {
@@ -656,7 +807,7 @@ function selectAttrCharisma() {
   document.getElementById("speed").style.display = "none";
   document.getElementById("speed-score").style.display = "none";
 
-  document.getElementById("btn-selectNewHero").style.display = "blck";
+  document.getElementById("btn-selectNewHero").style.display = "block";
 
   document.getElementById("otherStrength").style.display = "none";
   document.getElementById("otherStrength-score").style.display = "none";
@@ -672,12 +823,27 @@ function selectAttrCharisma() {
   document.getElementById("other-btn-message").style.display = "none";
   document.getElementById("other-btn-fight").style.display = "block";
 
+  document.getElementById("other-btn-message").style.display = "none";
+  document.getElementById("btn-selectForFight").style.display = "none";
+  document.getElementById("other-btn-selectNewHero").style.display = "none";
+  document.getElementById("other-btn-selectForFight").style.display = "none";
+
 
   document.getElementById("prev").style.display = "none";
 document.getElementById("next").style.display = "none";
 
 document.getElementById("battle-card-1").style.display = "block";
 document.getElementById("battle-card-2").style.display = "block";
+
+document.getElementById("fake-score-strength").style.display = "block";
+document.getElementById("fake-score-intellect").style.display = "block";
+document.getElementById("fake-score-speed").style.display = "block";
+document.getElementById("fake-score-charisma").style.display = "block";
+
+document.getElementById("real-score-strength").style.display = "none";
+document.getElementById("real-score-intellect").style.display = "none";
+document.getElementById("real-score-speed").style.display = "none";
+document.getElementById("real-score-charisma").style.display = "none";
 }
 
 function resetAttr(){
@@ -711,6 +877,16 @@ function resetAttr(){
   document.getElementById("btn-lose").style.display = "none";
   document.getElementById("other-btn-win").style.display = "none";
   document.getElementById("other-btn-lose").style.display = "none";
+
+  document.getElementById("fake-score-strength").style.display = "block";
+document.getElementById("fake-score-intellect").style.display = "block";
+document.getElementById("fake-score-speed").style.display = "block";
+document.getElementById("fake-score-charisma").style.display = "block";
+
+document.getElementById("real-score-strength").style.display = "none";
+document.getElementById("real-score-intellect").style.display = "none";
+document.getElementById("real-score-speed").style.display = "none";
+document.getElementById("real-score-charisma").style.display = "none";
 }
 
 
