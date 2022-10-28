@@ -105,6 +105,12 @@ lazy val itSettings = Defaults.itSettings ++ Seq(
 
 libraryDependencies ++= AppDependencies()
 
+libraryDependencies ++= Seq(
+  guice,
+  "com.dimafeng" %% "testcontainers-scala-scalatest" % testContainersScalaVersion % "test",
+  "com.dimafeng" %% "testcontainers-scala-mongodb" % testContainersScalaVersion % "test",
+
+)
 
 name := """captain-gemini"""
 organization := "com.captain-gemini"
