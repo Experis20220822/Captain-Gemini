@@ -5,6 +5,8 @@
 
 @import uk.gov.hmrc.govukfrontend.views.Aliases.Button
 
+
+
 @this(govukSelect: GovukSelect, govukButton: GovukButton, govukFieldset: GovukFieldset, govukInput: GovukInput)
 
 
@@ -24,7 +26,6 @@ justify-content: space-between;
 
 .card-container {
   display: grid;
-
   grid-gap: 50px;
   justify-content: center;
   align-items: center;
@@ -207,16 +208,16 @@ justify-content: space-between;
 
 .battle-container{
     display: grid;
-
     grid-template-columns: auto auto auto;
-
     grid-gap: 0;
     align-items: center;
 }
 
 .vs-container {
-margin: 50px;
+margin: 5px;
 }
+
+
 
 
 #btn-fight{
@@ -273,33 +274,37 @@ display: none;
         <div class="govuk-grid-row">
             <div class="battle-container">
 
-                <div class="card-container">
-                    <div class="card">
-                        <img src="https://www.biowars.com/blog/wp-content/uploads/2022/01/masked-superheroes-wolverine.jpg"
-                             alt="Person" class="card__image">
-                        <p class="card__name">Gary</p>
-                        <div class="card__slogon_container">
-                            <p class="card__slogon">"Spoon!"</p>
+                <div class="mySlides fade">
+                    <div class="card-container">
+
+                        <div class="card">
+                            <img src="" alt="" class="card__image">
+                            <p class="card__name"></p>
+                            <div class="card__slogan_container">
+                                <p class="card__slogan"></p>
+                            </div>
+                            <ul class="social-icons grid-container">
+                                <p id="strength">Strength</p>
+                                <li id="strength-score"><a><i onclick="selectAttrStrength()">64</i></a></li>
+                                <p id="intellect">Intellect</p>
+                                <li id="intellect-score"><a><i onclick="selectAttrIntellect()">45</i></a></li>
+                                <p id="speed">Speed</p>
+                                <li id="speed-score"><a><i onclick="selectAttrSpeed()">68</i></a></li>
+                                <p id="charisma"> Charisma</p>
+                                <li id="charisma-score"><a><i onclick="selectAttrCharisma()">10</i></a></li>
+                            </ul>
+                            <a id="btn-selectForFight" onclick="selectForFight()" class="btn draw-border">Select for battle</a>
+                            <a id="btn-fight" class="btn draw-border">Fight!</a>
+                            <a id="btn-selectNewHero" onclick="selectNewHero()" class="btn draw-border">Select a different hero!</a>
                         </div>
-                        <ul class="social-icons grid-container">
-                            <p id="strength">Strength</p>
-                            <li id="strength-score"><a><i onclick="selectAttrStrength()">64</i></a></li>
-                            <p id="intellect">Intellect</p>
-                            <li id="intellect-score"><a><i onclick="selectAttrIntellect()">45</i></a></li>
-                            <p id="speed">Speed</p>
-                            <li id="speed-score"><a><i onclick="selectAttrSpeed()">68</i></a></li>
-                            <p id="charisma"> Charisma</p>
-                            <li id="charisma-score"><a><i onclick="selectAttrCharisma()">10</i></a></li>
-                        </ul>
 
-                        <button id="btn-message" class="btn draw-border">Select your attribute above</button>
-
-                        <button id="btn-fight" onclick="fight()" class="btn draw-border">Fight!</button>
-                        <button id="btn-reset" onclick="resetAttr()" class="btn draw-border" >Reset</button>
-                        <button id="btn-win" onclick="resetAttr()" class="btn draw-border" >WINNER!</button>
-                        <button id="btn-lose" onclick="resetAttr()" class="btn draw-border" >LOSER!</button>
                     </div>
                 </div>
+
+                <!-- Next and previous buttons -->
+                <a id="prev" class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                <a id="next" class="next" onclick="plusSlides(1)">&#10095;</a>
+            </div>
 
                 <div class="vs-container">
                     <img class="vs-img"
