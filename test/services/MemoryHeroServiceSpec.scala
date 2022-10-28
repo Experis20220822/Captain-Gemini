@@ -22,7 +22,7 @@ class MemoryHeroServiceSpec extends PlaySpec {
       println(updated)
      // memoryStadiumService.update(updated)
       val result = memoryStadiumService.findById(10L).get
-      result mustBe Hero(10L, "BigR", "Heart is what wins battles", "img", 2,3,4,4)
+      result mustBe Hero(10L, "BigR", "Heart is what wins battles", "https://www.wallpaperup.com/uploads/wallpapers/2013/06/14/102891/0fb6df085d56d99fec30784ea5f4772a-700.jpg", 2,3,4,4)
       memoryStadiumService.findAll().size mustBe (1)
     }
 
